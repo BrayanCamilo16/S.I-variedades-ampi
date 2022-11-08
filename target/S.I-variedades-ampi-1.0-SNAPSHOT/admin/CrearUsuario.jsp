@@ -1,5 +1,4 @@
 <%@page import="vo.UsuarioVO" %>
-<body>
     <div class="modal fade" id="crear">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
@@ -257,4 +256,3 @@
     </script>
 
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-</body>

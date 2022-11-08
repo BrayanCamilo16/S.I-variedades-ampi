@@ -221,8 +221,7 @@ public class UsuarioController extends HttpServlet {
 
                 USUVO = USUSDAO.consultarId(Integer.parseInt(codigo));
                 if (USUVO != null) {
-                    HttpSession sesionsita = request.getSession();
-                    sesionsita.setAttribute("ConsultadoUsuario", USUVO);
+                    request.setAttribute("ConsultadoUsuario", USUVO);
                     request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
 
                 } else {

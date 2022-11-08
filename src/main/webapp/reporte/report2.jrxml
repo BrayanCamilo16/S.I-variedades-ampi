@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4129681-b9ae-4e4c-9a15-095c3f7e2dcd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from reporte2 where fecha like "%"$P{fecha}"%";]]>
+	</queryString>
+	<field name="pedido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="entrega" class="java.time.LocalDateTime">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="producto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="costeporproducto" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="192" y="0" width="193" height="35" uuid="08ac9a9d-8d4f-4961-8ad3-0d80ff7ae552"/>
+				<textElement textAlignment="Justified">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[reporte por fecha]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="361" y="51" width="56" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="710a1d55-b878-425f-a272-a47139a45905"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="51" width="56" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="05c6c22d-6051-46b9-b8b0-b970a51aebe0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="149" y="51" width="83" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3f75bb87-af09-49ad-834f-5a4d58150a70"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="417" y="51" width="62" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2a0b1c99-e902-4660-9074-9e9272abccbe"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="66" y="51" width="83" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1879eafb-3c0f-4e75-a3f0-4638b5e00e39"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="307" y="51" width="54" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="68bd0642-f478-4d19-a26a-e9a3c4af0443"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="232" y="51" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c63d3ed9-9950-4c6f-bb03-95659c196692"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="479" y="51" width="52" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cdb09c67-7a7a-4e74-8eaf-64cf2d2e21de"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="56" height="20" uuid="42ab3491-15d1-4255-acfb-b91ece0b712f"/>
+				<textFieldExpression><![CDATA[$F{pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="0" width="68" height="49" uuid="80fff7a4-be7f-463d-89d7-2798ec26c63a"/>
+				<textFieldExpression><![CDATA[$F{entrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="75" height="20" uuid="8ab9456a-a7eb-4bfe-aaac-de2f8d0e2e8a"/>
+				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="52" height="20" uuid="4e725309-5c55-4913-9e5e-c98d4b1dfe22"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="70" height="49" uuid="3d3f732a-66a0-4f59-87e8-da3cd158a28d"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="62" height="20" uuid="118830d4-b6f5-4b44-bd87-1d9bb59e2143"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="0" width="54" height="29" uuid="96ad9c2e-dcad-493c-8b4b-e1c238eb402a"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="56" height="20" uuid="9d75b57d-1586-4993-88a6-d7391a92ee8f"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#E6E6E6" uuid="6ed6e245-5ca6-479d-b6e6-a983f892fe9d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="0" width="40" height="13" backcolor="#E6E6E6" uuid="5da477d9-d4d3-405b-b258-85f45c93a1d1"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="13" uuid="735d94dd-0b4a-41c2-bb27-acce0fb624e7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

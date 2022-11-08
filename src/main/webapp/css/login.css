@@ -1,0 +1,83 @@
+form .grupo-loginn{
+    position: relative;
+    margin: 30px 20px;
+}
+.grupo-loginn .input-entrada{
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 50px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+}
+/*en los formularios se utiliza el focus para que cuando le de click cambie*/
+.grupo-loginn .input-entrada:focus{
+    outline: none;
+    color: #5e5d5d;
+}
+.labell-entrada{
+    position: absolute;
+    font-size: 22px;
+    color: #5F636C;
+    /*cuando le ponenmos el top le edtamos diciendo que se posicione en la parte mas alta del grupo que declaramos como clase*/
+    top: 35px;
+    left: 5px;
+    transition: 0.5s ease-in-out all;
+    font-family: 'Kaushan Script', cursive;
+   
+}
+/*selector avanzado cuando input focus este en label tengan esas propiedades*/
+.input-entrada:focus ~ .labell-entrada,
+.input-entrada:focus ~ .labell-entrada{
+    /*si arriba le dimos 10px, ahora se subira 4px arriba de la clase grupo*/
+    position: absolute;
+    top: -2px;
+    font-size: 20px;
+    color: red;
+}
+/*esta seudoclase es cuando se muestra el placeholder que esta vacio. 
+Por lo tanto cunado no se muestre el placeholder cambie*/
+.input-entrada:not(:placeholder-shown) ~ .labell-entrada{
+    position: absolute;
+    top: -2px;
+    font-size: 20px;
+    color: #0059FF;
+}
+.barra{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.barra:before{
+    content: '';
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: #5F636C;
+    transition: 0.3s ease width;
+    left: 0;
+}
+.input-entrada:focus~.barra:before{
+    width: 100%;
+    background: red;
+}
+.input-entrada:not(:placeholder-shown) ~.barra:before{
+    width: 100%;
+    background: #0059FF;
+}
+.ingreso-lo{
+    width: 150px;
+    border: none;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    background: #0059FF;
+    margin: auto;
+    display: block
+}

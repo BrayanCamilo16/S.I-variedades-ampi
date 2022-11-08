@@ -1,0 +1,229 @@
+package web;
+
+import dao.PedidoDAO;
+import dao.ProductoDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import vo.CarritoVO;
+import vo.PedidoVO;
+import vo.ProductoVO;
+import vo.UsuarioVO;
+
+/**
+ *
+ * @author pc
+ */
+@WebServlet(name = "EjemploCarrito", urlPatterns = {"/EjemploCarrito"})
+public class EjemploCarrito extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    ProductoVO productoV = new ProductoVO();
+    ProductoDAO produDao = new ProductoDAO();
+    List<ProductoVO> prodVo = new ArrayList<>();
+
+    List<CarritoVO> listarCarrito = new ArrayList<>();
+
+    int item;
+    double totalaPagar = 0.0;
+    int cantidad = 1;
+
+    int idproducto;
+    CarritoVO car;
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String accion = request.getParameter("accion");
+        prodVo = produDao.select();
+        System.out.println(prodVo);
+        switch (accion) {
+            case "Comprar":
+                totalaPagar = 0.0;
+                idproducto = Integer.parseInt(request.getParameter("id"));
+                productoV = produDao.selectById(idproducto);
+                //variables del carrito
+                item = item + 1;
+                car = new CarritoVO();
+                car.setItem(item);
+                car.setIdProdu(productoV.getIdProducto());
+                car.setNombre(productoV.getNombreProducto());
+                car.setDescripcion(productoV.getDescripcionProducto());
+                car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                car.setCantidad(cantidad);
+                car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+
+                listarCarrito.add(car);
+                for (int i = 0; i < listarCarrito.size(); i++) {
+                    totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
+                }
+                request.setAttribute("monto", totalaPagar);
+                request.setAttribute("carrito", listarCarrito);
+                request.setAttribute("contador", listarCarrito.size());
+                request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+                break;
+
+            case "AgregarCarrito":
+                int posicionProducto = 0;
+                cantidad = 1;
+                idproducto = Integer.parseInt(request.getParameter("id"));
+                productoV = produDao.selectById(idproducto);
+
+                //con el metodo sizze se conoce la cantidad de productos que tiene el carrito
+                if (listarCarrito.size() > 0) {
+                    //aqui se esta conociendo la posisicoon del produccto
+                    for (int i = 0; i < listarCarrito.size(); i++) {
+                        if (idproducto == listarCarrito.get(i).getIdProdu()) {
+                            posicionProducto = i;
+                        }
+                    }
+                    if (idproducto == listarCarrito.get(posicionProducto).getIdProdu()) {
+                        cantidad = listarCarrito.get(posicionProducto).getCantidad() + cantidad;
+                        double subtotal = listarCarrito.get(posicionProducto).getPrecioCompra() * cantidad;
+                        listarCarrito.get(posicionProducto).setCantidad(cantidad);
+                        listarCarrito.get(posicionProducto).setSubtotal(subtotal);
+                    } else {
+                        //variables del carrito
+                        item = item + 1;
+                        car = new CarritoVO();
+                        car.setItem(item);
+                        car.setIdProdu(productoV.getIdProducto());
+                        car.setNombre(productoV.getNombreProducto());
+                        car.setDescripcion(productoV.getDescripcionProducto());
+                        car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                        car.setCantidad(cantidad);
+                        car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                        listarCarrito.add(car);
+                    }
+                } else {
+                    //variables del carrito
+                    item = item + 1;
+                    car = new CarritoVO();
+                    car.setItem(item);
+                    car.setIdProdu(productoV.getIdProducto());
+                    car.setNombre(productoV.getNombreProducto());
+                    car.setDescripcion(productoV.getDescripcionProducto());
+                    car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                    car.setCantidad(cantidad);
+                    car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                    listarCarrito.add(car);
+                }
+
+                request.setAttribute("contador", listarCarrito.size());
+                request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
+                break;
+
+            case "Carrito":
+                totalaPagar = 0.0;
+                HttpSession sesionCarrito = request.getSession();
+                sesionCarrito.setAttribute("carrito", listarCarrito);
+                for (int i = 0; i < listarCarrito.size(); i++) {
+                    totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
+                }
+                request.setAttribute("monto", totalaPagar);
+                request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+//                UsuarioVO u = new UsuarioVO();
+//                if (!u.getIdRol().equals("1") && !u.getIdRol().equals("2") && !u.getIdRol().equals("3")) {
+//                    request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+//                } else {
+//                    request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
+//
+//                }
+
+                break;
+
+            case "Delete":
+                int idPro = Integer.parseInt(request.getParameter("idP"));
+                //EL BUCLE VA A RECORRER TODALA LISTA DEL  CARRITO
+                for (int i = 0; i < listarCarrito.size(); i++) {
+                    //SI EL IDPRODUCTO QUE ESTA DENTRO DE LA LISTA CARRITO ES IGUAL A EL ID QUE FUE CAPTURADO
+                    if (listarCarrito.get(i).getIdProdu() == idPro) {
+                        //SI SE CUMPLE LA CONDICION CON EL METODO REMOVE SE ELIMINARIA
+                        listarCarrito.remove(i);
+                    }
+                }
+                break;
+
+            case "GenerarPedido":
+
+                HttpSession sesionPedido = request.getSession();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                String fechaPedido = sdf.format(new Date());
+                PedidoVO pediVO = new PedidoVO();
+                pediVO.setDestinoPedido("direccion");
+                List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
+                pediVO.setDetallePedido(listarCarrito);
+                pediVO.setFechaPedido(fechaPedido);
+                pediVO.setFechaEntrega("2022-08-23");
+                pediVO.setEstadoPedido("cANCELADO");
+                PedidoDAO pediDAO = new PedidoDAO();
+                int res = pediDAO.GenerarCompra(pediVO);
+                if (res != 0 && totalaPagar > 0) {
+                    request.setAttribute("MensajeExito", "Se guardo con exito");
+                } else {
+                    request.setAttribute("MensajeError", "NO Se guardo con exito");
+                }
+                request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+                break;
+            default:
+                request.setAttribute("productos", prodVo);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

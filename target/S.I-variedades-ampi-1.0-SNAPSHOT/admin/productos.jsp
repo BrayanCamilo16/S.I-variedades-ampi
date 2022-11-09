@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <buttom class=" btn btn-primary text-white p-2 mb-2 my-3 float-end" data-bs-toggle="modal" data-bs-target="#registrarProducto"><i class="fas fa-plus-circle me-1"></i>Agregar producto</buttom>
-                    <table class="table table-striped" id="product">
+                    <table class="content-table" id="product">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">#</th>
@@ -77,7 +77,7 @@
                                 <td class="text-center align-middle">$ <%= f.format(productoVo.getPrecioUnitarioProducto())%></td>
                                 <td class="text-center align-middle"><%= f.format(productoVo.getStockProducto())%></td>
                                 <td class="text-center align-middle"><%= productoVo.getEstadoProducto()%></td>
-                                <td class="text-center align-middle"><img  src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="<%= productoVo.getNombreProducto()%>" width="60px;" height="60px"/></td>
+                                <td class="text-center align-middle"><img  src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="<%= productoVo.getNombreProducto()%>" width="80px;" height="80px"/></td>
                                 <td class="text-center d-flex justify-content-evenly align-items-center h-100">
                                     <form action="${pageContext.request.contextPath}/Producto" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="idProducto" value="<%= productoVo.getIdProducto()%>">

@@ -38,7 +38,7 @@
             <p>Sistema de informacion para manejar todo el proceso de facturacion de los pedidos de la empresa Variedades Ampi.</p>
         </div>
         <div class="curveado">
-            <img src="img/bannerwaves.svg"></a>
+            <img src="${pageContext.request.contextPath}/img/bannerwaves.svg"></a>
         </div>
     </banner><br><br>
     <!--fin del banner-->

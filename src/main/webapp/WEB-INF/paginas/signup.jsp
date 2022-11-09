@@ -1,113 +1,119 @@
 <%@page import="vo.UsuarioVO" %>
 <body>
-    <div class="modal fade" id="signup">
+    <div class="modal fade" id="signup" style="margin: auto; ">
         <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <div>
-                        <h3 class="modal-title fw-bold lead">Registra un usuario</h3>
-                        <span>Es f&#225;cil y r&#225;pido.</span>
-                    </div>
-                    <button type="button" class="text-white bg-transparent border-0" data-bs-dismiss="modal"
-                            aria-label="Close"><i class="fas fa-times"></i></button>
-                </div>
+            <div class="modal-content" style="width: 900px;">
+                <button type="button" class="text-dark bg-transparent border-0" data-bs-dismiss="modal"
+                                            aria-label="Close"><i class="fas fa-times"></i></button>
                 <form action="${pageContext.request.contextPath}/Usuario" method="POST" style="overflow-y: scroll;"
                       id="formulario">
                     <div class="modal-body">
-                        <div class="contenedor-re">
-                            <!--Grupo nombre-->
-                            <div class="gruponombre" id="grupos-inp">
-                                <div class="otrogrupo">
-                                    <i class="fa-solid fa-user-secret iconsito"></i>
-                                    <input type="text" name="nombre" id="nombre"  class="puty" required>
-                                    <span class="muevase">Nombre</span>
-                                </div>
+                        <div class="todoS">
+                            <div class="imagend">
+                                <img src="${pageContext.request.contextPath}/img/imagenVar.jpg" alt=""/>
                             </div>
-                            <span class="nombreText"></span>
 
-
-
-                            <!--Grupo apellido-->
-                            <div class="grupoapellido" id="grupos-inp">
-                                <div class="otrogrupo">
-                                    <i class="fa-solid fa-user-secret iconsito"></i>
-                                    <input type="text" name="apellido" id="apellido"  class="puty" required>
-                                    <span class="muevase">Apellido</span>
+                            <div class="contenedor-re">
+                                <div class="modal-header bg-primary text-white">
+                                    <div>
+                                        <h3 class="modal-title fw-bold lead">Registrate</h3>
+                                    </div>
+                                    
                                 </div>
-                            </div>
-                            <span class="apellidoText"></span>
+                                <!--Grupo nombre-->
+                                <div class="gruponombre" id="grupos-inp">
+                                    <div class="otrogrupo">
+                                        <i class="fa-solid fa-user-secret iconsito"></i>
+                                        <input type="text" name="nombre" id="nombre"  class="puty" required>
+                                        <span class="muevase">Nombre</span>
+                                    </div>
+                                </div>                                <span class="nombreText"></span>
 
 
-                            <!--                            grupo correo electronico-->
-                            <div class="grupocorreo" id="grupos-inp">
-                                <div class="otrogrupo">
-                                    <i class="fa-solid fa-envelope iconsito"></i>
-                                    <input type="text" name="email" id="emailSingup" class="puty"  required>
-                                    <span class="muevase">Correo electr&#243;nico</span>
+
+
+                                <!--Grupo apellido-->
+                                <div class="grupoapellido" id="grupos-inp">
+                                    <div class="otrogrupo">
+                                        <i class="fa-solid fa-user-secret iconsito"></i>
+                                        <input type="text" name="apellido" id="apellido"  class="puty" required>
+                                        <span class="muevase">Apellido</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="correoText"></span>
+                                <span class="apellidoText"></span>
 
 
-
-                            <!--                            grupo contraseña-->
-                            <div class="grupopassword" id="grupos-inp">
-                                <div class="otrogrupo">
-                                    <i class="fa-solid fa-lock iconsito"></i>
-                                    <input type="password" name="pass" id="password" class="puty" required>
-                                    <span class="muevase">Contrase&#241;a </span>
+                                <!--                            grupo correo electronico-->
+                                <div class="grupocorreo" id="grupos-inp">
+                                    <div class="otrogrupo">
+                                        <i class="fa-solid fa-envelope iconsito"></i>
+                                        <input type="text" name="email" id="emailSingup" class="puty"  required>
+                                        <span class="muevase">Correo electr&#243;nico</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="passwordText"></span>
+                                <span class="correoText"></span>
 
 
-                            <div class="form-group mb-2" id="grupos-inp">
-                                <div class="otrogrupo">
-                                    <i class="fa-solid fa-venus iconsito"></i>
-                                    <select name="sexo" required class="puty">
-                                        <option value="1">Hombre</option>
-                                        <option value="2">Mujer</option>
-                                        <option value="3">Otro</option>
+
+                                <!--                            grupo contraseña-->
+                                <div class="grupopassword" id="grupos-inp">
+                                    <div class="otrogrupo">
+                                        <i class="fa-solid fa-lock iconsito"></i>
+                                        <input type="password" name="pass" id="password" class="puty" required>
+                                        <span class="muevase">Contrase&#241;a </span>
+                                    </div>
+                                </div>
+                                <span class="passwordText"></span>
+
+
+                                <div class="form-group mb-2" id="grupos-inp">
+                                    <div class="otrogrupo">
+                                        <i class="fa-solid fa-venus iconsito"></i>
+                                        <select name="sexo" required class="puty">
+                                            <option value="1">Hombre</option>
+                                            <option value="2">Mujer</option>
+                                            <option value="3">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <%
+                                    HttpSession sesion = request.getSession();
+                                    if (sesion.getAttribute("usuarioVo") != null) {
+                                        UsuarioVO usuarioVO = (UsuarioVO) sesion.getAttribute("usuarioVo");
+                                        String idRol = usuarioVO.getIdRol();
+
+                                        if (idRol.equals(1)) {
+                                %>
+                                <div class="form-group mb-2" id="grupos-inp">
+                                    <label for="rol">Rol <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="idRol" required>
+                                        <option value="2">Vendedor</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="3">Cliente</option>
                                     </select>
                                 </div>
-                            </div>
-                            <%
-                                HttpSession sesion = request.getSession();
-                                if (sesion.getAttribute("usuarioVo") != null) {
-                                    UsuarioVO usuarioVO = (UsuarioVO) sesion.getAttribute("usuarioVo");
-                                    String idRol = usuarioVO.getIdRol();
-
-                                    if (idRol.equals(1)) {
-                            %>
-                            <div class="form-group mb-2" id="grupos-inp">
-                                <label for="rol">Rol <span class="text-danger">*</span></label>
-                                <select class="form-select" name="idRol" required>
-                                    <option value="2">Vendedor</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="3">Cliente</option>
-                                </select>
-                            </div>
 
 
-                            <div class="form-group mb-2" id="grupos-inp">
-                                <label for="estado">Estado <span class="text-danger">*</span></label><%//}%>
-                                <select class="form-select" name="estado" required>
-                                    <option value="1">Activo</option>
-                                    <option value="0">Inactivo</option>
-                                </select>
-                            </div>
+                                <div class="form-group mb-2" id="grupos-inp">
+                                    <label for="estado">Estado <span class="text-danger">*</span></label><%//}%>
+                                    <select class="form-select" name="estado" required>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </div>
 
-                            <%
+                                <%
+                                        }
+
                                     }
+                                %>
 
-                                }
-                            %>
-
-                            <div class="modal-footer d-flex justify-content-center">
-                                <p id="mensaje1" class="d-none">Por favor suministre bien los campos para hacer el registro correctamente.<i class="fa-solid fa-circle-exclamation"></i></p>
-                                <p id="mensaje2" class="d-none">Por favor seleccione el no soy un robot.<i class="fa-solid fa-circle-exclamation"></i></p>
-                                <div class="g-recaptcha" data-sitekey="6Ld_AhkiAAAAAA1ltvB7iId9Ga3VczHWVSJ2qFVo"></div><br><br>
-                                <button type="submit" class="btn btn-primary btn-lg">Registrarte<i class="fa-solid fa-user-plus"></i></button>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <p id="mensaje1" class="d-none">Por favor suministre bien los campos para hacer el registro correctamente.<i class="fa-solid fa-circle-exclamation"></i></p>
+                                    <p id="mensaje2" class="d-none">Por favor seleccione el no soy un robot.<i class="fa-solid fa-circle-exclamation"></i></p>
+                                    <div class="g-recaptcha" data-sitekey="6Ld_AhkiAAAAAA1ltvB7iId9Ga3VczHWVSJ2qFVo"></div><br><br>
+                                    <button type="submit" class="btn btn-primary btn-lg">Registrarte<i class="fa-solid fa-user-plus"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        
         <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
     </body>
 </html>

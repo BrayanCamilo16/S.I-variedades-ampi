@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <buttom class=" btn btn-primary text-white p-2 mb-2 my-3 float-end" data-bs-toggle="modal" data-bs-target="#registrarCategoria"><i class="fas fa-plus-circle me-1"></i>Agregar categor&#237;a</buttom>
-                    <table class="table table-striped" id="category">
+                    <table class="content-table" id="category">
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">#</th>
@@ -31,7 +31,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%                                CategoriaDAO categoriaDao = new CategoriaDAO();
+                            <% 
+                                CategoriaDAO categoriaDao = new CategoriaDAO();
                                 CategoriaVO categoriaVo = null;
                                 List<CategoriaVO> categorias = categoriaDao.select();
                                 int contador = 0;

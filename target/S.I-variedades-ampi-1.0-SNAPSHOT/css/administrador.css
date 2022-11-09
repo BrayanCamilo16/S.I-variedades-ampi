@@ -71,37 +71,3 @@
     font-weight: 500;
     color: #0F42A6;
 }
-/*
-
-*/
-/*estilos de la vista usuarios*/
-/*
-
-*/
-.todo{
-    background: linear-gradient(to left, #317DFD, #7CABFA, #C0D5F9);
-    height: auto;
-    padding: 20px;
-    margin: 0 70px;
-}
-.tables{
-    background-color: white;
-    box-shadow:  0 5px 10px rgb(0, 0, 0);
-    margin: 10px 50px;
-    cursor: default;
-    border-radius: 10px;
-    border-collapse: collapse;
-}
-.tables tr:nth-child(even){
-    background-color: #ddd;
-}
-.tables .theadd .titulo-usuarios, tfoot .titulo-usuarios{
-    background: #D9E6FB;
-    border-bottom: #317DFD 1px solid;
-    color: #474A50;
-    font-family: 'Kaushan Script', cursive;
-    font-size: 17px;
-}
-.tables td{
-    padding: 20px 0;
-}

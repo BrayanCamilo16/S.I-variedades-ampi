@@ -1,5 +1,4 @@
 <%@page import="vo.UsuarioVO"%>
-<body>
     <%
         UsuarioVO VO = new UsuarioVO();
         if (request.getAttribute("ConsultadoUsuario") != null) {//UsuarioVO VO = (UsuarioVO) request.getAttribute("UsuarioConsultado");%>
@@ -47,11 +46,11 @@
 
                         <label>Tipo Documento</label>
                         <select name="tipoDocu" disabled>
-                            <option <%=VO.getTipoDocumento().equals("1") ? "selected" : " "%> value="1">Cedula de Ciudadania</option>
-                            <option <%=VO.getTipoDocumento().equals("2") ? "selected" : " "%> value="2">Cedula de Extranjeria</option>
-                            <option <%=VO.getTipoDocumento().equals("3") ? "selected" : " "%> value="3">Tarjeta Identidadad</option>
-                            <option <%=VO.getTipoDocumento().equals("4") ? "selected" : " "%> value="4">Pasaporte</option>
-                            <option <%=VO.getTipoDocumento().equals("5") ? "selected" : " "%> value="5">NIT</option>
+                            <option value="1">Cedula de Ciudadania</option>
+                            <option value="2">Cedula de Extranjeria</option>
+                            <option value="3">Tarjeta Identidadad</option>
+                            <option value="4">Pasaporte</option>
+                            <option value="5">NIT</option>
                         </select>
 
                         <label>Numero Documento</label>
@@ -65,9 +64,9 @@
 
                         <label>Sexo</label>
                         <select name="sexo" disabled>
-                            <option <%=VO.getSexoUsuario().equals("1") ? "selected" : " "%> value="1">Masculino</option>
-                            <option <%=VO.getSexoUsuario().equals("2") ? "selected" : " "%> value="2">Femenino</option>
-                            <option <%=VO.getSexoUsuario().equals("3") ? "selected" : " "%> value="3">Otro</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                            <option value="3">Otro</option>
                         </select>
 
                         <label>Estado</label>
@@ -75,9 +74,9 @@
 
                         <label>Rol</label>
                         <select name="rol">
-                            <option <%=VO.getIdRol().equals("1") ? "selected" : " "%> value="1">Administrador</option>
-                            <option <%=VO.getIdRol().equals("2") ? "selected" : " "%> value="2">Empleado</option>
-                            <option <%=VO.getIdRol().equals("3") ? "selected" : " "%> value="3">Cliente</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
+                            <option value="3">Cliente</option>
                         </select>
                     </div>
 
@@ -100,4 +99,3 @@
             </div>
         </div>
     </div>
-</body>

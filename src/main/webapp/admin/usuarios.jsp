@@ -77,7 +77,7 @@
                     <%
                         if (user.isEstadoUsuario() == true) {%>
                     <button class="btn btn-primary rounded-pill"><%=estado%></button>
-                    <%} else if (user.isEstadoUsuario() == false) {%>
+                    <%} else {%>
                     <button class="btn btn-danger rounded-pill"><%=estado%></button>
                     <%}%>
                 </td>
@@ -101,7 +101,6 @@
                     <%} else if (user.isEstadoUsuario() == false) {%>
                     <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
                     <button class="btn-transparent border-0 bg-transparent" onclick="alertaActivar(<%=user.getIdUsuario()%>, false)"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 25px;"></i></button>
-
                     <%}%>
                 </td>
             </tr>
@@ -118,6 +117,17 @@
         <jsp:include page="ModificarUsuario.jsp"/>
     </body>
 </html>
+
+<script>
+    window.$('#update').modal('show');
+    $(document).on('click', '#closeModal', function () {
+        window.$('#update').modal('hide');
+        window.$('#update').removeClass('show');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         $('#user').DataTable({
@@ -131,12 +141,3 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <jsp:include page="CrearUsuario.jsp"/>
-<script>
-    window.$('#update').modal('show');
-    $(document).on('click', '#closeModal', function () {
-        window.$('#update').modal('hide');
-        window.$('#update').removeClass('show');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-    });
-</script>

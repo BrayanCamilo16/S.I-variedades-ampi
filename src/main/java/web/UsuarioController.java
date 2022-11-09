@@ -216,21 +216,16 @@ public class UsuarioController extends HttpServlet {
                 break;
 
             case 6:
-                UsuarioVO USUVO = new UsuarioVO();
                 UsuarioDAO USUSDAO = new UsuarioDAO();
-
-                USUVO = USUSDAO.consultarId(Integer.parseInt(codigo));
+                UsuarioVO USUVO = USUSDAO.consultarId(Integer.parseInt(codigo));
                 if (USUVO != null) {
-                    HttpSession sesionsita = request.getSession();
-                    sesionsita.setAttribute("ConsultadoUsuario", USUVO);
+                    request.setAttribute("ConsultadoUsuario", USUVO);
                     request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
-
                 } else {
                     request.setAttribute("MensajeError", "El usuario No esta");
                     request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
                 }
                 break;
-
             case 8:
                 UsuarioDAO USUDAO = new UsuarioDAO();
                 String direccion2 = request.getParameter("email");

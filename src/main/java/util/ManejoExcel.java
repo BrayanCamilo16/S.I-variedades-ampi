@@ -12,6 +12,8 @@ import vo.CategoriaVO;
  * @version 1.0.0
  */
 public class ManejoExcel {
+    
+    public static final String URL_FILES = "C:\\S.I-variedades-ampi\\src\\main\\webapp\\files\\";
 
     /**
      * Este método sirve para guardar el archivo en una ruta absoluta
@@ -94,7 +96,7 @@ public class ManejoExcel {
         String categorias = "";
         String categoriaVo = "";
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\variedades-ampi\\src\\main\\webapp\\files\\excel\\" + nameFile));
+            BufferedReader reader = new BufferedReader(new FileReader(URL_FILES + "excel\\" + nameFile));
             String line = null;
             int contador = 0;
             while ((line = reader.readLine()) != null) {

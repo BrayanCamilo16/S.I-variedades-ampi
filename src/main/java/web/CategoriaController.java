@@ -6,6 +6,7 @@ import java.nio.file.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+import util.ManejoExcel;
 import util.ManejoImg;
 import static util.ManejoImg.saveFile;
 import util.Validacion;
@@ -21,7 +22,7 @@ public class CategoriaController extends HttpServlet {
 
     private CategoriaVO categoriaVo = new CategoriaVO();
     private CategoriaDAO categoriaDao = new CategoriaDAO();
-    private String pathFiles = "C:\\variedades-ampi\\src\\main\\webapp\\files\\categoria\\";
+    private String pathFiles = ManejoExcel.URL_FILES + "categoria\\";
     private File uploads = new File(pathFiles);
     private String[] extens = {".ico", ".png", ".jpg", ".jpeg"};
 

@@ -27,7 +27,7 @@ import vo.CategoriaVO;
 @WebServlet(name = "FilesController", urlPatterns = {"/Files"})
 public class FilesController extends HttpServlet {
 
-    private final String pathFiles = "C:\\variedades-ampi\\src\\main\\webapp\\files\\excel\\";
+    private final String pathFiles = ManejoExcel.URL_FILES + "excel\\";
     private File uploads = new File(pathFiles);
     private final String[] extens = {".csv"};
     private CategoriaDAO categoriaDao = new CategoriaDAO();

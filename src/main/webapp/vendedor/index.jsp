@@ -5,6 +5,7 @@
 <html>
     <head>
         <title>Variedades Ampi|Vendedor</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo-variedades-ampi.png"/>
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
     </head>
     <body>

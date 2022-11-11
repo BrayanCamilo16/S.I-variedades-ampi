@@ -47,15 +47,15 @@
                     <buttom class=" btn btn-primary text-white p-2 mb-2 my-3 float-end" data-bs-toggle="modal" data-bs-target="#registrarProducto"><i class="fas fa-plus-circle me-1"></i>Agregar producto</buttom>
                     <table class="content-table" id="product">
                         <thead>
-                            <tr class="text-center">
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripci&#243;n</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Imagen</th>
-                                <th scope="col">Acciones</th>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Descripci&#243;n</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,14 +71,14 @@
                                     contadorProductos++;
                             %>
                             <tr class="">
-                                <td class="text-center align-middle"><%= contadorProductos%></td>
-                                <td class="align-middle"><%= productoVo.getNombreProducto()%></td>
-                                <td class="align-middle"><%= productoVo.getDescripcionProducto()%></td>
-                                <td class="text-center align-middle">$ <%= f.format(productoVo.getPrecioUnitarioProducto())%></td>
-                                <td class="text-center align-middle"><%= f.format(productoVo.getStockProducto())%></td>
-                                <td class="text-center align-middle"><%= productoVo.getEstadoProducto()%></td>
-                                <td class="text-center align-middle"><img  src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="<%= productoVo.getNombreProducto()%>" width="80px;" height="80px"/></td>
-                                <td class="text-center d-flex justify-content-evenly align-items-center h-100">
+                                <td><%= contadorProductos%></td>
+                                <td><%= productoVo.getNombreProducto()%></td>
+                                <td><%= productoVo.getDescripcionProducto()%></td>
+                                <td>$ <%= f.format(productoVo.getPrecioUnitarioProducto())%></td>
+                                <td><%= f.format(productoVo.getStockProducto())%></td>
+                                <td><%= productoVo.getEstadoProducto()%></td>
+                                <td><img  src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="<%= productoVo.getNombreProducto()%>"/></td>
+                                <td class="d-flex justify-content-evenly align-items-center h-100">
                                     <form action="${pageContext.request.contextPath}/Producto" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="idProducto" value="<%= productoVo.getIdProducto()%>">
                                         <input type="hidden" name="opcion" value="1">

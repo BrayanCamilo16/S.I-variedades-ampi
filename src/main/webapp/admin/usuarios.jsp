@@ -35,78 +35,87 @@
             alert("${mensajeExitoo}");
         </script>
         <%}%>
-        <a class="btn btn-primary text-white p-2 mb-2 my-3 float-end" href="" data-bs-toggle="modal" data-bs-target="#crear"><i class="fas fa-user-plus me-1"></i>Crear usuario</a>
-        <table id="user">
-            <thead>
-                <tr>
-                    <th class="titulo-usuarios text-center">#</th>
-                    <th class="titulo-usuarios text-center">Nombre</th>
-                    <th class="titulo-usuarios text-center">Apellido</th>
-                    <th class="titulo-usuarios text-center">Email</th>
-                    <th class="titulo-usuarios text-center">Tipo Documento</th>
-                    <th class="titulo-usuarios text-center">Numero Documento</th>
-                    <th class="titulo-usuarios text-center">Estado</th>
-                    <th class="titulo-usuarios text-center">Telefono</th>
-                    <th class="titulo-usuarios text-center">Direccion</th>
-                    <th class="titulo-usuarios text-center">Sexo</th>
-                    <th class="titulo-usuarios text-center">Cargo</th>
-                    <th class="titulo-usuarios text-center">Acciones</th>
-                </tr>
-            </thead>
-            <%
-                UsuarioVO user = new UsuarioVO();
-                UsuarioDAO userD = new UsuarioDAO();
-                ArrayList<UsuarioVO> listaUsuarios = userD.listar();
-                for (int i = 0; i < listaUsuarios.size(); i++) {
-                    user = listaUsuarios.get(i);
-                    String estado = " ";
-                    if (user.isEstadoUsuario() == true) {
-                        estado = "Activo";
-                    } else if (user.isEstadoUsuario() == false) {
-                        estado = "Inactivo";
-                    }
-            %>
-            <tr>
-                <td><%=user.getIdUsuario()%></td>
-                <td><%=user.getNombreUsuario()%></td>
-                <td><%=user.getApellidoUsuario()%></td>
-                <td><%=user.getEmailUsuario()%></td>
-                <td><%=user.getTipoDocumento()%></td>
-                <td><%=user.getNumDocumentoUsuario()%></td>
-                <td>
-                    <%
-                        if (user.isEstadoUsuario() == true) {%>
-                    <button class="btn btn-primary rounded-pill"><%=estado%></button>
-                    <%} else {%>
-                    <button class="btn btn-danger rounded-pill"><%=estado%></button>
-                    <%}%>
-                </td>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-primary text-white p-2 mb-2 my-3 float-end" href="" data-bs-toggle="modal" data-bs-target="#crear"><i class="fas fa-user-plus me-1"></i>Crear usuario</a>
+                    <table class="content-table" id="user">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Tipo Documento</th>
+                                <th>Numero Documento</th>
+                                <th>Estado</th>
+                                <th>Telefono</th>
+                                <th>Direccion</th>
+                                <th>Sexo</th>
+                                <th>Cargo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbi-user">
+                            <%
+                                UsuarioVO user = new UsuarioVO();
+                                UsuarioDAO userD = new UsuarioDAO();
+                                ArrayList<UsuarioVO> listaUsuarios = userD.listar();
+                                for (int i = 0; i < listaUsuarios.size(); i++) {
+                                    user = listaUsuarios.get(i);
+                                    String estado = " ";
+                                    if (user.isEstadoUsuario() == true) {
+                                        estado = "Activo";
+                                    } else if (user.isEstadoUsuario() == false) {
+                                        estado = "Inactivo";
+                                    }
+                            %>
+                            <tr>
+                                <td><%=user.getIdUsuario()%></td>
+                                <td><%=user.getNombreUsuario()%></td>
+                                <td><%=user.getApellidoUsuario()%></td>
+                                <td><%=user.getEmailUsuario()%></td>
+                                <td><%=user.getTipoDocumento()%></td>
+                                <td><%=user.getNumDocumentoUsuario()%></td>
+                                <td>
+                                    <%
+                                        if (user.isEstadoUsuario() == true) {%>
+                                    <button class="btn btn-primary rounded-pill"><%=estado%></button>
+                                    <%} else {%>
+                                    <button class="btn btn-danger rounded-pill"><%=estado%></button>
+                                    <%}%>
+                                </td>
 
-                <td><%=user.getTelefonoUsuario()%></td>
-                <td><%=user.getDireccionUsuario()%></td>
-                <td><%=user.getSexoUsuario()%></td>
-                <td><%=user.getIdRol()%></td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/Usuario"  method="POST" >
-                        <input type="hidden" name="codigo" value="<%=user.getIdUsuario()%>">
-                        <input type="hidden" name="action" value="6">
-                        <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#update"><i class="fas fa-edit text-info"></i></button>
-                    </form>
-                    <%
-                        if (user.isEstadoUsuario() == true) {%>
-                    <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
-                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaInactivar(<%=user.getIdUsuario()%>, true)"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 25px;"></i></button>
+                                <td><%=user.getTelefonoUsuario()%></td>
+                                <td><%=user.getDireccionUsuario()%></td>
+                                <td><%=user.getSexoUsuario()%></td>
+                                <td><%=user.getIdRol()%></td>
+                                <td class="d-flex justify-content-evenly align-items-center h-100">
+                                    <form action="${pageContext.request.contextPath}/Usuario"  method="POST" >
+                                        <input type="hidden" name="codigo" value="<%=user.getIdUsuario()%>">
+                                        <input type="hidden" name="action" value="6">
+                                        <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#update"><i class="fas fa-edit text-info"></i></button>
+                                    </form>
+                                    <%
+                                        if (user.isEstadoUsuario() == true) {%>
+                                    <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
+                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaInactivar(<%=user.getIdUsuario()%>, true)"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 25px;"></i></button>
 
 
-                    <%} else if (user.isEstadoUsuario() == false) {%>
-                    <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
-                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaActivar(<%=user.getIdUsuario()%>, false)"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 25px;"></i></button>
-                    <%}%>
-                </td>
-            </tr>
+                                    <%} else if (user.isEstadoUsuario() == false) {%>
+                                    <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
+                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaActivar(<%=user.getIdUsuario()%>, false)"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 25px;"></i></button>
+                                        <%}%>
+                                </td>
+                            </tr>
 
-            <%}%>
-        </table>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
 
         <!-- footer  -->
         <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp" />

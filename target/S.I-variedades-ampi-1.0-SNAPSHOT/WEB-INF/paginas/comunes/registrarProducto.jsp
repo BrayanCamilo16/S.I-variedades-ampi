@@ -16,8 +16,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP Page</title>
+        <title>Actualizar Producto</title>
         <jsp:include page="/WEB-INF/paginas/comunes/head-bootstrap.jsp" />
+        <jsp:include page="/WEB-INF/paginas/comunes/head-css.jsp" />
     </head>
     <body>
         <!-- header  -->

@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.container-slider{
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    background-color: #F7F9FC;
+}
+.slider{
+    display: flex;
+    width: 400%;
+    margin-left: -100%;
+    margin: auto;
+    padding: 65px 0
+}
+.slider-section{
+    width: 100%;
+}
+.contenido-caja{
+    width: 320px;
+    height: 100%;
+    display: flex;
+    box-shadow: 0 0 7px #111;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin: 0 65px;
+    border-bottom: 5px #4070f4 solid;
+    border-left: 2px #4070f4 solid;
+    border-right: 2px #4070f4 solid;
+    border-radius: 25px;
+}
+.contenido-caja:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+    /*que cada tarjeta se traslade de manera vetical a -8%*/
+    transform: translateY(-8%);
+    transition: all 400ms ease;
+}
+.contenido-caja .contenido-imagen{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    height: 200px;
+    width: 100%;
+    background-color: #4070f4;
+}
+.contenido-imagen img{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    margin: 30px 0;
+}
+.contenido-tarjeta{
+    border-top-left-radius: 25px;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 60px;
+}
+.contenido-tarjeta .nombre{
+    color: #333;
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+    text-align: center;
+}
+.contenido-tarjeta .descripcion{
+    font-size:20px;
+    color: #707070;
+    text-align: center;
+}
+.precio{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.3px solid #aaa;
+}
+.box-precio .precio1{
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.shopping .sho{
+    padding: 0 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4070f4;
+}
+.shopping .sho:hover{
+    font-size: 50px;
+}
+.corazon .cora{
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+}
+.slider-btn{
+    position: absolute;
+    color: #4070f4;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 243%;
+}
+.slider-btn:hover{
+    background: #4070f4;
+    color: white
+}
+.slider-btn-right{
+    right: 10px;
+}
+.slider-btn-left{
+    left: 10px;
+}

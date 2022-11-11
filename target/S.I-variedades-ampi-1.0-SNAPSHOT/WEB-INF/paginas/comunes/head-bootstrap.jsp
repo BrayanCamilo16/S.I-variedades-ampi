@@ -1,4 +1,4 @@
-<title>Variedades ampi</title>
+<title>Variedades Ampi</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo-variedades-ampi.png"/>
 <!-- CSS -->
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>

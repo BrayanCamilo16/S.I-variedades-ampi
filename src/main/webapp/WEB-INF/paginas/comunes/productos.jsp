@@ -1,30 +1,39 @@
+<%@page import="java.util.List"%>
 <%@page import="vo.ProductoVO"%>
 <%@page import="dao.ProductoDAO"%>
-<%@page import="java.util.List"%>
-<div class="col-md-12 d-flex word-wrap">
-    <%
-        ProductoDAO productoDao = new ProductoDAO();
-        ProductoVO productoVo = null;
-        List<ProductoVO> productos = productoDao.select();
-        for (int i = 0; i < productos.size(); i++) {
-            productoVo = productos.get(i);
-    %>
+<div class="container-slider">
+    <div class="slider" id="slider">
+        <%
+            ProductoDAO productoDao = new ProductoDAO();
+            ProductoVO productoVo = null;
+            List<ProductoVO> productos = productoDao.select();
 
-    <div class="mx-2 p-2 div_categorias">
-        <div class="card-body text-center">
-            <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto() %>" width="100px" alt="alt"/>
-            <p>Precio: <span class="fw-bold"><%= productoVo.getPrecioUnitarioProducto() %></span></p>
-            <h5 class="card-text fw-bold"><%= productoVo.getNombreProducto() %></h5>
-            <p><%= productoVo.getDescripcionProducto() %></p>
-            <form action="${pageContext.request.contextPath}/Producto" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="opcion" value="4">
-                <input type="hidden" name="idProducto" value="<%= productoVo.getIdProducto() %>">
-                <a href="${pageContext.request.contextPath}/EjemploCarrito?accion=AgregarCarrito&id=<%=productoVo.getIdProducto()%>" class="btn btn-primary">Agregar <i class="fas fa-shopping-cart ms-1"></i></a>
-                <a href="${pageContext.request.contextPath}/EjemploCarrito?accion=Comprar&id=<%=productoVo.getIdProducto()%>" class="btn btn-danger">Comprar</a>
-            </form>
+            for (int i = 0; i < productos.size(); i++) {
+                productoVo = productos.get(i);
+        %>
+        <div class="slider-section">
+            <div class="contenido-caja">
+                <div class="contenido-imagen">
+                    <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="alt" class="imagen"/>
+                </div>
+                <div class="contenido-tarjeta">
+                    <h1 class="nombre"><%= productoVo.getNombreProducto()%></h1>
+                    <p class="descripcion"><%= productoVo.getDescripcionProducto()%></p>
+                </div>
+                <div class="precio">
+                    <div class="box-precio">
+                        <span class="precio1">$<%= productoVo.getPrecioUnitarioProducto()%></span>
+                    </div>
+                        <span class="corazon"><a class="cora" href="${pageContext.request.contextPath}/EjemploCarrito?accion=Comprar&id=<%=productoVo.getIdProducto()%>"><i class="fa-regular fa-heart"></i></a></span>
+                        <span class="shopping"><a class="sho" href="${pageContext.request.contextPath}/EjemploCarrito?accion=AgregarCarrito&id=<%=productoVo.getIdProducto()%>"><i class="fas fa-shopping-cart ms-1"></i></a>
+                    </span>
+                </div>
+            </div>
         </div>
+        <%
+            }
+        %>
     </div>
-    <%
-        }
-    %>
+    <i class="fas fa-chevron-circle-right slider-btn slider-btn-right" id="btn-right"></i>
+    <i class="fas fa-chevron-circle-left slider-btn slider-btn-left" id="btn-left"></i>
 </div>

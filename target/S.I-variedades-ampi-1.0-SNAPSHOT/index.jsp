@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="WEB-INF/paginas/comunes/head-bootstrap.jsp" />
@@ -43,20 +46,14 @@
     </banner><br><br>
     <!--fin del banner-->
     <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="text-center fw-bold my-4">Compra por categor&#237;as</h4>
-                    <!-- categorias  -->
-                    <jsp:include page="WEB-INF/paginas/comunes/categorias.jsp" />
-                    <!-- /categorias  -->
-                    <h4 class="text-center fw-bold my-4">Productos</h4>
-                    <!-- Productos  -->
-                    <jsp:include page="WEB-INF/paginas/comunes/productos.jsp" />
-                    <!-- /Productos  -->
-                </div>
-            </div>
-        </div>
+        <h4 class="compras-cate">Compra por categor&#237;as</h4>
+        <!-- categorias  -->
+        <jsp:include page="WEB-INF/paginas/comunes/categorias.jsp" />
+        <!-- /categorias  -->
+        <h4 class="compras-produ">Productos</h4>
+        <!-- Productos  -->
+        <jsp:include page="WEB-INF/paginas/comunes/productos.jsp" />
+        <!-- /Productos  -->
     </section>
 
     <%
@@ -80,5 +77,7 @@
     <!-- /File js  -->
 
     <jsp:include page="/WEB-INF/paginas/comunes/alerta-modal.jsp" />
+    <script src="${pageContext.request.contextPath}/js/sliderC.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/slider.js" type="text/javascript"></script>
 </body>
 </html>

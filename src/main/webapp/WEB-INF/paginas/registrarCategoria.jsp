@@ -15,7 +15,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JSP Page</title>
+        <title>Actualizar Categoria</title>
+        <jsp:include page="/WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="/WEB-INF/paginas/comunes/head-bootstrap.jsp" />
     </head>
     <body>

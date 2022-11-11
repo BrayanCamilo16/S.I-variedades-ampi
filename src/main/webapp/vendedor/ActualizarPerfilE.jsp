@@ -1,9 +1,3 @@
-<%-- 
-    Document   : updateUser
-    Created on : 6/08/2022, 7:26:53 p. m.
-    Author     : pc
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dao.UsuarioDAO"%>
 <%@page import="vo.UsuarioVO"%>

@@ -70,7 +70,7 @@
                     <label>Rol</label>
                     <select name="rol">
                         <option value="1">Administrador</option>
-                        <option value="2">Empleado</option>
+                        <option value="2">Vendedor</option>
                         <option value="3">Cliente</option>
                     </select>
                 </div>
@@ -78,8 +78,9 @@
 
 
                 <div class="modal-footer d-flex justify-content-center">
+                    
+                    <button type="submit" class="btn btn-primary btn-lg">Actualizar Usuario</button>
                     <input type="hidden" value="3" name="action">
-                    <button class="btn btn-primary btn-lg">Actualizar Usuario</button>
                 </div>
 
             </form>

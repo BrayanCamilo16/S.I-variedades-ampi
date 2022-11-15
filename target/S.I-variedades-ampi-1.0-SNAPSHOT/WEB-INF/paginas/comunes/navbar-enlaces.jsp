@@ -114,13 +114,13 @@
         <ul class="lista-todooo">
             <%} else {%>
             <li class="listass-enlacess">
-                <a aria-current="page" href="${pageContext.request.contextPath}/EjemploCarrito?accion=Carrito"><i class="fas  fa-cart-plus">(<label style="color: black">${contador}</label>)</i>Carrito</a>
+                <a aria-current="page" href="${pageContext.request.contextPath}/cliente"><i class="fa-solid fa-plus-circle"></i>Seguir Comprando</a>
             </li>
             <li class="listass-enlacess">
-                <a aria-current="page" href="" class="enlacesss">Pedidos<i class="fas fa-solid fa-cart-arrow-down"></i></a>
+                <a aria-current="page" href="${pageContext.request.contextPath}/cliente/pedidos.jsp" class="enlacesss">Pedidos<i class="fas fa-solid fa-cart-arrow-down"></i></a>
             </li>
             <li class="listass-enlacess">
-                <a aria-current="page" href="" class="enlacesss">Facturas<i class="fas fa-solid fa-file-invoice-dollar"></i></a>
+                <a aria-current="page" href="${pageContext.request.contextPath}/cliente/facturas.jsp" class="enlacesss">Facturas<i class="fas fa-solid fa-file-invoice-dollar"></i></a>
             </li>
             <!--                <li>
                                 <button class="nav-link btn btn-transparent text-dark mx-2"><i

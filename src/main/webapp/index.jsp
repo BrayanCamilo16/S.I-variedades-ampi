@@ -11,11 +11,10 @@
         <title>Variedades Ampi</title>
     </head>
     <body>
-        <jsp:include page="WEB-INF/paginas/comunes/alerta.jsp" />
         <!-- header  -->
         <jsp:include page="WEB-INF/paginas/comunes/header.jsp" />
         <!-- /header  -->
-
+        <jsp:include page="WEB-INF/paginas/comunes/alerta.jsp" />
         <%
             //cuando es diferente a nulo es que si hubo un error
             if (request.getAttribute("mensajeErrorrr") != null) {%>
@@ -35,7 +34,7 @@
 
         <!--        este es el  banner-->
 
-    <banner>
+    <banner class="bannerr">
         <div class="infor">
             <h1>Bienvenidos a Variedades Ampi</h1>
             <p>Sistema de informacion para manejar todo el proceso de facturacion de los pedidos de la empresa Variedades Ampi.</p>
@@ -75,9 +74,8 @@
     <!-- File js  -->
     <jsp:include page="/WEB-INF/paginas/comunes/archivos-js.jsp" />
     <!-- /File js  -->
-
     <jsp:include page="/WEB-INF/paginas/comunes/alerta-modal.jsp" />
-    <script src="${pageContext.request.contextPath}/js/sliderC.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/slider.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/sliderCategorias.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/sliderProductos.js" type="text/javascript"></script>
 </body>
 </html>

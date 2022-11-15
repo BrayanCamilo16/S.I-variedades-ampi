@@ -9,7 +9,7 @@
     <ul class="ulsito">
         <div class="esoaciado">
             <li class="lisito">
-                <a aria-current="page" href="${pageContext.request.contextPath}"><i class="fa-solid fa-plus-circle"></i>Seguir Comprando</a></a>
+                <a aria-current="page" href="${pageContext.request.contextPath}"><i class="fa-solid fa-plus-circle"></i>Seguir Comprando</a>
             </li>
             <li class="lisito">
                 <a aria-current="page" href="">Productos</a>

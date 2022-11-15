@@ -1,0 +1,88 @@
+.todoS{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 59% 41%;
+}
+.imagend{
+    width: 100%;
+    height: 100%
+}
+.imagend .botonsito{
+    position: absolute;
+    top: 0%;
+    left: 0;
+    border: none;
+    background: #EBEDEF;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #0080FF;
+    font-weight: bold
+}
+.todoS .imagend img{
+    width: 100%;
+    height: 100%
+}
+.contenedor-re{
+    position: relative;
+    width: 100%;
+}
+.contenedor-re #grupos-inp{
+    margin: auto;
+    width: 95%;
+    height: 46px;
+}
+.contenedor-re #grupos-inp:last-child{
+    margin-bottom: 0;
+}
+.contenedor-re #grupos-inp .otrogrupo{
+    position: relative;
+    margin-bottom: 40px;
+}
+.contenedor-re #grupos-inp .otrogrupo .puty{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid #0051FF;
+    background: transparent;
+    font-size: 16px;
+    padding: 12px 0px  12px 42px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    color: #111;
+    font-weight: 300;
+}
+.contenedor-re #grupos-inp .otrogrupo .muevase{
+    position: absolute;
+    left: 1px;
+    padding: 12px 0px  12px 42px;
+    display: block;
+    font-size: 16px;
+    color: #111;
+    font-weight: 300;
+    transition: 0.5s;
+    pointer-events: none;
+}
+.contenedor-re #grupos-inp .otrogrupo .puty:focus ~ .muevase,
+.contenedor-re #grupos-inp .puty:valid ~ .muevase{
+    font-family: 'Kaushan Script', cursive;
+    position: absolute;
+    color: #0051FF;
+    transform: translateX(-40px) translateY(-40px);
+    font-size: 20px;
+}
+.contenedor-re #grupos-inp .otrogrupo:focus{
+    border-color: #0642FE;
+    box-shadow: 0 0 8px 0 #0642FE
+}
+#grupos-inp .iconsito{
+    position: absolute;
+    margin-left: 12px;
+    color: #0051FF;
+    top: 11px;
+    text-align: center;
+    font-size: 25px;
+    display: block;
+}

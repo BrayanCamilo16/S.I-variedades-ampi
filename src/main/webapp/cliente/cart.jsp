@@ -78,9 +78,6 @@
         <!-- footer  -->
         <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->
-
-        <jsp:include page="../WEB-INF/paginas/login.jsp" />
-        <jsp:include page="../WEB-INF/paginas/signup.jsp" />
         <jsp:include page="../WEB-INF/paginas/generarPedido.jsp" />
 
         <!-- File js  -->

@@ -1,23 +1,26 @@
 <%@page import="vo.ProductoVO"%>
+<%@include file="../cache.jsp" %>
+<%@include file="ValidarRolCliente.jsp" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="WEB-INF/paginas/comunes/head-bootstrap.jsp" />
-        <jsp:include page="WEB-INF/paginas/comunes/head-css.jsp" />
+        <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
+        <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="js/EliminarProductoCarrito.js" type="text/javascript"></script>
     </head>
     <body>
-        <jsp:include page="WEB-INF/paginas/comunes/header-carrito.jsp" />
+        <jsp:include page="../WEB-INF/paginas/comunes/navbar-enlaces.jsp" />
         <div class="container mt-4">
             <div class="row">
-                <div class="col-sm-8">
-                    <table border="1">
+                <div class="col-sm-4">
+                    <table class="tablita">
                         <thead>
                             <tr>
-                                <th>Item</th>
+                                <th>#</th>
+                                <th>Producto</th>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Precio</th>
@@ -27,42 +30,49 @@
                             </tr>
                         </thead>
                         <tbody>
-
-
                             <c:forEach var="car" items="${carrito}">
                                 <tr>
                                     <td>${car.getItem()}</td>
+                                    <td><img src="${pageContext.request.contextPath}/files/producto/${car.getImagenProducto()}"/></td>
                                     <td>${car.getNombre()}</td>
                                     <td>${car.getDescripcion()}</td>
-                                    <td>${car.getPrecioCompra()}</td>
-                                    <td><i class="fas fa-minus-circle me-2 text-danger"></i>${car.getCantidad()}<i class="fas fa-plus-circle ms-2 text-success"></i></td>
-                                    <td>${car.getSubtotal()}</td>
+                                    <td>$${car.getPrecioCompra()}</td>
+                                    <td class="clk">
+                                        <form method="POST" action="${pageContext.request.contextPath}/EjemploCarrito?accion=RestarCarrito&id=${car.getIdProdu()}">
+                                            <button type="submit" class="border-0 bg-transparent"><i class="fas fa-minus-circle me-2 text-danger"></i></button>
+                                        </form>
+                                        ${car.getCantidad()}
+                                        <form method="POST" action="${pageContext.request.contextPath}/EjemploCarrito?accion=SumarCarrito&id=${car.getIdProdu()}">
+                                            <button type="submit" class="border-0 bg-transparent"><i class="fas fa-plus-circle ms-2 text-success"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>$${car.getSubtotal()}</td>
                                     <td>
                                         <input type="hidden" id="idP" value="${car.getIdProdu()}">
-                                        <button class="btn-transparent border-0 bg-transparent" id="btnDelete"><i class="fa-solid fa-trash text-danger" style="font-size: 25px;"></i></button>
+                                        <a href="#" id="btnDelete"><button class="btn-transparent border-0 bg-transparent"><i class="fa-solid fa-trash text-danger" style="font-size: 25px;"></i></button></a>
                                     </td>
-                                </tr> 
+                                </tr>
                             </c:forEach>
                         </tbody>
                     </table>
 
                 </div>
                 <div class="col ms-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Generar Compra</h3>
+                    <div class="pedidoo" style="float: right">
+                        <div class="pedidoti">
+                            <h3>Generar Pedido</h3>
                         </div>
-                        <div class="card-body">
-                            <label>Subtotal</label>
-                            <input type="text" value="${monto}" readonly="" class="form-control">
-                            <label>Descuento</label>
-                            <input type="text" value="$ 0.0" readonly="" class="form-control">
-                            <label>Total a pagar</label>
-                            <input type="text" value="${monto}" readonly="" class="form-control">
+                        <div class="tarjetap">
+                            <label>Subtotal:</label>
+                            <input type="text" value="$${monto}" readonly="">
+                            <label>Descuento:</label>
+                            <input type="text" value="$ 0.0" readonly="">
+                            <label>Total a pagar:</label>
+                            <input type="text" value="$${monto}" readonly="">
                         </div>
-                        <div class="card-footer">
-                            <a href="" class="btn btn-primary btn-block">Realizar Pago</a>
-                            <a href="EjemploCarrito?accion=GenerarPedido" class="btn btn-danger btn-block">Generar Compra</a>
+                        <div class="tarjetaf">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#generarPedido" class="buty">Realizar Pago<i class="fa-solid fa-dollar-sign"></i></button>
+<!--                            <a href="${pageContext.request.contextPath}/EjemploCarrito?accion=GenerarPedido">Generar Pedido<i class="fa-solid fa-dollar-sign"></i></a>-->
                         </div>
                     </div>
                 </div>
@@ -75,20 +85,13 @@
         <%} else {%>
         ${MensajeExito}
         <%}%>
-        <script src="https://kit.fontawesome.com/dca352768f.js" crossorigin="anonymous"></script>
         <!-- footer  -->
         <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->
-
-        <jsp:include page="/WEB-INF/paginas/login.jsp" />
-        <jsp:include page="/WEB-INF/paginas/signup.jsp" />
-
-
-
+        <jsp:include page="generarPedido.jsp" />
         <!-- File js  -->
         <jsp:include page="/WEB-INF/paginas/comunes/archivos-js.jsp" />
         <!-- /File js  -->
 
-        <jsp:include page="/WEB-INF/paginas/comunes/alerta-modal.jsp" />
     </body>
 </html>

@@ -147,34 +147,26 @@ public class UsuarioController extends HttpServlet {
             break;
 
             case 3: // update
-                UsuarioVO usuaVO = new UsuarioVO();
-                UsuarioDAO usuaDAO = new UsuarioDAO();
 
-                if (!request.getParameter("codigoId").equals("")
-                        && !request.getParameter("rol").equals("")) {
-                    usuaVO = new UsuarioVO(Integer.parseInt(request.getParameter("codigoId")),
-                            request.getParameter("email"), request.getParameter("pass"),
-                            request.getParameter("nombre"), request.getParameter("apellido"),
-                            request.getParameter("numDocu"), request.getParameter("telefono"),
-                            request.getParameter("direccion"), request.getParameter("sexo"), true,
-                            request.getParameter("rol"), request.getParameter("tipoDocu"));
+//                if (
+//                        !request.getParameter("codigoId").equals("")
+//                        && !request.getParameter("rol").equals("")) {
+////                    usuaVO = new UsuarioVO(Integer.parseInt(request.getParameter("codigoId")),
+////                            request.getParameter("email"), request.getParameter("pass"),
+////                            request.getParameter("nombre"), request.getParameter("apellido"),
+////                            request.getParameter("numDocu"), request.getParameter("telefono"),
+////                            request.getParameter("direccion"), request.getParameter("sexo"), true,
+////                            request.getParameter("rol"), request.getParameter("tipoDocu"));
+//                HttpSession sessioon = request.getSession();
+//                UsuarioVO usuaaaVO = (UsuarioVO) sessioon.getAttribute("usuarioVo");
+                UsuarioVO US = new UsuarioVO();
+                UsuarioDAO usuaaDAO = new UsuarioDAO(US);
+                if (usuaaDAO.updateAdministrador()) {
+                    request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
+                    request.setAttribute("mensajeExito", "Los datos se modificaron correctamente");
 
-                    HttpSession sessioon = request.getSession();
-                    UsuarioVO usuaaaVO = (UsuarioVO) sessioon.getAttribute("usuarioVo");
-                    UsuarioDAO usuaaDAO = new UsuarioDAO(usuaVO);
-
-                    if (usuaaaVO.getIdRol().equals("1")) {
-                        usuaaDAO.updateAdministrador();
-                        request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
-                        request.setAttribute("mensajeExito", "Tus datos se modificaron correctamente");
-                    } else if (usuaaDAO.update()) {
-                        request.getRequestDispatcher("vendedor/ActualizarPerfilE.jsp").forward(request, response);
-                        request.setAttribute("mensajeExito", "Tus datos se modificaron correctamente");
-                    } else {
-                        request.setAttribute("mensajeError", "Los datos no se modificaron");
-                    }
                 } else {
-                    request.setAttribute("mensajeActualzar", "Tus datos son nulos");
+                    request.setAttribute("mensajeError", "No se pudo actualizar el usuario");
                     System.out.println("Los datos son nulos");
                     request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
                 }
@@ -235,7 +227,7 @@ public class UsuarioController extends HttpServlet {
                 lasesion.setAttribute("emailActualizar", direccion2);
                 lasesion.setAttribute("codigoVerificacion", codigoVerificacion);
 
-                String contenido2 = "Su Codigo de Verificacion es" +" " + codigoVerificacion + " " +  "asegurese de suministrarlo  bien";
+                String contenido2 = "Su Codigo de Verificacion es" + " " + codigoVerificacion + " " + "asegurese de suministrarlo  bien";
                 String resultado = "";
 
                 if (USUDAO.RecibirEmail(direccion2)) {
@@ -304,8 +296,8 @@ public class UsuarioController extends HttpServlet {
                 } else {
                     nuevorol = "desconocido";
                 }
-                String contenido3 = "<p style='font-family:sans-serif; font-size:20px; font-weight: bold;'>Hola" + " " + nombre + " " + apellido + 
-                        "</p><p>Te han registrado como" + " " + nuevorol + " "
+                String contenido3 = "<p style='font-family:sans-serif; font-size:20px; font-weight: bold;'>Hola" + " " + nombre + " " + apellido
+                        + "</p><p>Te han registrado como" + " " + nuevorol + " "
                         + "y tu contraseña para iniciar sesion es: <b>" + pass + " " + "</b></p><p>Recuerda cambiar tu contraseña.</p>"
                         + "Disfruta <a href=\"http://localhost:8080/variedades-ampi/index.jsp\">Variedades Ampi</a>";
                 //SI ESTO RETORNA UN VERDADERO RETORNA UN MENSAJE EXITO

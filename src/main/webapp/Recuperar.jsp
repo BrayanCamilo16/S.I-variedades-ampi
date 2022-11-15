@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Recuperacion de contraseña</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo-variedades-ampi.png"/>
         <jsp:include page="WEB-INF/paginas/comunes/head-css.jsp" />
     </head>
     <body class="fondoR">
@@ -37,7 +38,7 @@
                             <i class="fa-solid fa-code-compare"></i>
                             <input type="number" name="codigoVerificacion" placeholder="Escribe el codigo" id="codigo">
                         </div>
-                        <button type="submit" class="ok">Comprobar</button>
+                        <button type="submit" class="ok" >Comprobar</button>
                         <input type="hidden" value="9" name="action">
                     </form>
                     <%}
@@ -60,5 +61,6 @@
                 </div>
             </div>
         </div>
+
     </body>
 </html>

@@ -1,0 +1,89 @@
+.tablita{
+    border-collapse: collapse;
+    font-size: 15px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15)
+}
+.tablita thead tr th{
+    background: #0080FF;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 20px
+}
+.tablita .tbi-user tr td{
+    padding: 10px 10px;
+}
+.tablita tbody tr td{
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+.tablita tbody tr .clk{
+    margin-top:30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: none
+}
+.tablita tbody tr td img{
+    border-radius: 5px;
+    width: 120px;
+    height: 90px;
+}
+.tablita tbody tr:nth-of-type(even){
+    background-color: #D8DAE0;
+}
+.tablita tbody tr:last-of-type{
+    border-bottom: 2px #1D51E8 solid;
+}
+.pedidoo{
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #808B96;
+}
+.pedidoti{
+    background: #0080FF;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    border-bottom: 1px solid #808B96;
+    text-align: center
+}
+.pedidoti h3{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 30px;
+}
+.tarjetap{
+    border-bottom: 1px solid #808B96;
+    padding: 10px
+}
+.tarjetap label{
+    margin: 10px 0;
+    font-size: 20px;
+    display: block;
+}
+.tarjetap input{
+    width: 100%;
+    cursor: default;
+    background: #E5E8E8;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+}
+.tarjetaf{
+    text-align: center;
+    padding: 20px;
+}
+.tarjetaf .buty, .realiza{
+    padding: 10px 55px;
+    background: #0080FF;
+    color: white;
+    font-size: 23px;
+    font-family: 'Kaushan Script', cursive;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+}

@@ -57,18 +57,18 @@ public class CarritoVO {
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-    int item;
-    int idProdu;
-    String Nombre;
-    String Descripcion;
-    double PrecioCompra;
-    int cantidad;
-    double subtotal;
 
-    public CarritoVO() {
+    public String getImagenProducto() {
+        return imagenProducto;
     }
 
-    public CarritoVO(int item, int idProdu, String Nombre, String Descripcion, double PrecioCompra, int cantidad, double subtotal) {
+    public void setImagenProducto(String imagenProducto) {
+        this.imagenProducto = imagenProducto;
+    }
+
+  
+
+    public CarritoVO(int item, int idProdu, String Nombre, String Descripcion, double PrecioCompra, int cantidad, double subtotal, String imagenProducto) {
         this.item = item;
         this.idProdu = idProdu;
         this.Nombre = Nombre;
@@ -76,7 +76,21 @@ public class CarritoVO {
         this.PrecioCompra = PrecioCompra;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
+        this.imagenProducto = imagenProducto;
     }
+    int item;
+    int idProdu;
+    String Nombre;
+    String Descripcion;
+    double PrecioCompra;
+    int cantidad;
+    double subtotal;
+    String imagenProducto;
+
+    public CarritoVO() {
+    }
+
+    
     
     
 }

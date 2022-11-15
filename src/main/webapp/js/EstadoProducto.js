@@ -15,7 +15,6 @@ function alertaInactivarP(codigoId, estado) {
         }
     });
 }
-
 function alertaActivarP(codigoId, estado) {
     Swal.fire({
         icon: 'success',

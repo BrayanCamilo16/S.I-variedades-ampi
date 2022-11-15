@@ -16,7 +16,7 @@
         <title>Mis pedidos</title>
     </head>
     <body>
-        <jsp:include page="../WEB-INF/paginas/comunes/header.jsp" />
+        <jsp:include page="../WEB-INF/paginas/comunes/navbar-enlaces.jsp" />
         <div class="container">
             <div class="row">
                 <!--<div class="col-md-2"></div>-->
@@ -33,7 +33,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%                                HttpSession sesionn = request.getSession();
+                            <%                                
+                                HttpSession sesionn = request.getSession();
                                 UsuarioVO usuarioVo = (UsuarioVO) sesionn.getAttribute("usuarioVo");
                                 PedidoDAO pedidoDao = new PedidoDAO();
                                 ProductoDAO productoDao = new ProductoDAO();
@@ -64,8 +65,8 @@
                         </tbody>
                     </table>
                 </div>
-                <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
             </div>
         </div>
+        <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
     </body>
 </html>

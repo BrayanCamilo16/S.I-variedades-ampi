@@ -14,7 +14,7 @@
         %>
         <div class="slider-sectionn">
             <div class="todo-contenido">
-                <div class="card">
+                <div class="cardr">
                     <div class="face front">
                         <img src="${pageContext.request.contextPath}/files/categoria/<%= categoriaVo.getRutaImgCategoria()%>" alt="<%= categoriaVo.getDescripcionCategoria()%>">
                         <h2><%= categoriaVo.getNombreCategoria()%></h2>
@@ -33,6 +33,6 @@
             }
         %>
     </div>
-    <i class="fas fa-chevron-circle-right slider-btnn slider-btn-rightt" id="btn-rightt"></i>
-    <i class="fas fa-chevron-circle-left slider-btnn slider-btn-leftt" id="btn-leftt"></i>
+    <i class="fas fa-chevron-circle-right slider-btnn slider-btn-rightt" id="derecho-btn"></i>
+    <i class="fas fa-chevron-circle-left slider-btnn slider-btn-leftt" id="izquierdo-btn"></i>
 </div>

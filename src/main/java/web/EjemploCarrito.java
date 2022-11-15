@@ -68,6 +68,7 @@ public class EjemploCarrito extends HttpServlet {
                 car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
                 car.setCantidad(cantidad);
                 car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                car.setImagenProducto(productoV.getNombreImgProducto());
 
                 listarCarrito.add(car);
                 for (int i = 0; i < listarCarrito.size(); i++) {
@@ -78,7 +79,34 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("contador", listarCarrito.size());
                 request.getRequestDispatcher("Carrito.jsp").forward(request, response);
                 break;
+                
+                case "ComprarCliente":
+                totalaPagar = 0.0;
+                idproducto = Integer.parseInt(request.getParameter("id"));
+                productoV = produDao.selectById(idproducto);
+                //variables del carrito
+                item = item + 1;
+                car = new CarritoVO();
+                car.setItem(item);
+                car.setIdProdu(productoV.getIdProducto());
+                car.setNombre(productoV.getNombreProducto());
+                car.setDescripcion(productoV.getDescripcionProducto());
+                car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                car.setCantidad(cantidad);
+                car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                car.setImagenProducto(productoV.getNombreImgProducto());
 
+                listarCarrito.add(car);
+                for (int i = 0; i < listarCarrito.size(); i++) {
+                    totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
+                }
+                request.setAttribute("monto", totalaPagar);
+                request.setAttribute("carrito", listarCarrito);
+                request.setAttribute("contador", listarCarrito.size());
+                request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
+                break;
+                
+                
             case "AgregarCarrito":
                 int posicionProducto = 0;
                 cantidad = 1;
@@ -109,6 +137,58 @@ public class EjemploCarrito extends HttpServlet {
                         car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
                         car.setCantidad(cantidad);
                         car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                        car.setImagenProducto(productoV.getNombreImgProducto());
+                        listarCarrito.add(car);
+                    }
+                } else {
+                    //variables del carrito
+                    item = item + 1;
+                    car = new CarritoVO();
+                    car.setItem(item);
+                    car.setIdProdu(productoV.getIdProducto());
+                    car.setNombre(productoV.getNombreProducto());
+                    car.setDescripcion(productoV.getDescripcionProducto());
+                    car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                    car.setCantidad(cantidad);
+                    car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                    car.setImagenProducto(productoV.getNombreImgProducto());
+                    listarCarrito.add(car);
+                }
+
+                request.setAttribute("contador", listarCarrito.size());
+                request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
+                break;
+
+            case "SumarCarrito":
+                int posicionProducto2 = 0;
+                cantidad = 1;
+                idproducto = Integer.parseInt(request.getParameter("id"));
+                productoV = produDao.selectById(idproducto);
+
+                //con el metodo sizze se conoce la cantidad de productos que tiene el carrito
+                if (listarCarrito.size() > 0) {
+                    //aqui se esta conociendo la posisicoon del produccto
+                    for (int i = 0; i < listarCarrito.size(); i++) {
+                        if (idproducto == listarCarrito.get(i).getIdProdu()) {
+                            posicionProducto2 = i;
+                        }
+                    }
+                    if (idproducto == listarCarrito.get(posicionProducto2).getIdProdu()) {
+                        cantidad = listarCarrito.get(posicionProducto2).getCantidad() + cantidad;
+                        double subtotal = listarCarrito.get(posicionProducto2).getPrecioCompra() * cantidad;
+                        listarCarrito.get(posicionProducto2).setCantidad(cantidad);
+                        listarCarrito.get(posicionProducto2).setSubtotal(subtotal);
+                    } else {
+                        //variables del carrito
+                        item = item + 1;
+                        car = new CarritoVO();
+                        car.setItem(item);
+                        car.setIdProdu(productoV.getIdProducto());
+                        car.setNombre(productoV.getNombreProducto());
+                        car.setDescripcion(productoV.getDescripcionProducto());
+                        car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                        car.setCantidad(cantidad);
+                        car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
                         listarCarrito.add(car);
                     }
                 } else {
@@ -126,7 +206,68 @@ public class EjemploCarrito extends HttpServlet {
                 }
 
                 request.setAttribute("contador", listarCarrito.size());
-                request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
+                request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
+                break;
+
+            case "RestarCarrito":
+                int posicionProducto3 = 0;
+                cantidad = 1;
+                idproducto = Integer.parseInt(request.getParameter("id"));
+                productoV = produDao.selectById(idproducto);
+
+                //con el metodo sizze se conoce la cantidad de productos que tiene el carrito
+                if (listarCarrito.size() > 0) {
+                    //aqui se esta conociendo la posisicoon del produccto
+                    for (int i = 0; i < listarCarrito.size(); i++) {
+                        if (idproducto == listarCarrito.get(i).getIdProdu()) {
+                            posicionProducto3 = i;
+                        }
+                    }
+                    if (idproducto == listarCarrito.get(posicionProducto3).getIdProdu()) {
+                        cantidad = listarCarrito.get(posicionProducto3).getCantidad() - cantidad;
+                        double subtotal = listarCarrito.get(posicionProducto3).getPrecioCompra() * cantidad;
+                        listarCarrito.get(posicionProducto3).setCantidad(cantidad);
+                        listarCarrito.get(posicionProducto3).setSubtotal(subtotal);
+                    } else {
+                        //variables del carrito
+                        item = item + 1;
+                        car = new CarritoVO();
+                        car.setItem(item);
+                        car.setIdProdu(productoV.getIdProducto());
+                        car.setNombre(productoV.getNombreProducto());
+                        car.setDescripcion(productoV.getDescripcionProducto());
+                        car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                        car.setCantidad(cantidad);
+                        car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                        listarCarrito.add(car);
+                    }
+                } else {
+                    //variables del carrito
+                    item = item + 1;
+                    car = new CarritoVO();
+                    car.setItem(item);
+                    car.setIdProdu(productoV.getIdProducto());
+                    car.setNombre(productoV.getNombreProducto());
+                    car.setDescripcion(productoV.getDescripcionProducto());
+                    car.setPrecioCompra(productoV.getPrecioUnitarioProducto());
+                    car.setCantidad(cantidad);
+                    car.setSubtotal(cantidad * productoV.getPrecioUnitarioProducto());
+                    listarCarrito.add(car);
+                }
+
+                request.setAttribute("contador", listarCarrito.size());
+                request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
+                break;
+            case "Delete":
+                int idPro = Integer.parseInt(request.getParameter("idP"));
+                //EL BUCLE VA A RECORRER TODALA LISTA DEL  CARRITO
+                for (int i = 0; i < listarCarrito.size(); i++) {
+                    //SI EL IDPRODUCTO QUE ESTA DENTRO DE LA LISTA CARRITO ES IGUAL A EL ID QUE FUE CAPTURADO
+                    if (listarCarrito.get(i).getIdProdu() == idPro) {
+                        //SI SE CUMPLE LA CONDICION CON EL METODO REMOVE SE ELIMINARIA
+                        listarCarrito.remove(i);
+                    }
+                }
                 break;
 
             case "Carrito":
@@ -145,41 +286,52 @@ public class EjemploCarrito extends HttpServlet {
 //                    request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
 //
 //                }
-
                 break;
-
-            case "Delete":
-                int idPro = Integer.parseInt(request.getParameter("idP"));
-                //EL BUCLE VA A RECORRER TODALA LISTA DEL  CARRITO
+                
+                case "CarritoPedido":
+                totalaPagar = 0.0;
+                HttpSession sesionCarrito2 = request.getSession();
+                sesionCarrito2.setAttribute("carrito", listarCarrito);
                 for (int i = 0; i < listarCarrito.size(); i++) {
-                    //SI EL IDPRODUCTO QUE ESTA DENTRO DE LA LISTA CARRITO ES IGUAL A EL ID QUE FUE CAPTURADO
-                    if (listarCarrito.get(i).getIdProdu() == idPro) {
-                        //SI SE CUMPLE LA CONDICION CON EL METODO REMOVE SE ELIMINARIA
-                        listarCarrito.remove(i);
-                    }
+                    totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
                 }
+                request.setAttribute("monto", totalaPagar);
+                request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
+//                UsuarioVO u = new UsuarioVO();
+//                if (!u.getIdRol().equals("1") && !u.getIdRol().equals("2") && !u.getIdRol().equals("3")) {
+//                    request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+//                } else {
+//                    request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
+//
+//                }
                 break;
 
             case "GenerarPedido":
-
                 HttpSession sesionPedido = request.getSession();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                String fechaPedido = sdf.format(new Date());
-                PedidoVO pediVO = new PedidoVO();
-                pediVO.setDestinoPedido("direccion");
-                List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
-                pediVO.setDetallePedido(listarCarrito);
-                pediVO.setFechaPedido(fechaPedido);
-                pediVO.setFechaEntrega("2022-08-23");
-                pediVO.setEstadoPedido("cANCELADO");
-                PedidoDAO pediDAO = new PedidoDAO();
-                int res = pediDAO.GenerarCompra(pediVO);
-                if (res != 0 && totalaPagar > 0) {
-                    request.setAttribute("MensajeExito", "Se guardo con exito");
+                UsuarioVO veo = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
+
+                if (veo == null) {
+                    request.setAttribute("MensajeError", "Debes iniciar Sesion pra generar el pedido");
                 } else {
-                    request.setAttribute("MensajeError", "NO Se guardo con exito");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    String fechaPedido = sdf.format(new Date());
+                    PedidoVO pediVO = new PedidoVO();
+                    pediVO.setDestinoPedido("direccion");
+                    List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
+                    pediVO.setDetallePedido(listarCarrito);
+                    pediVO.setFechaPedido(fechaPedido);
+                    pediVO.setFechaEntrega("2022-08-23");
+                    pediVO.setEstadoPedido("cANCELADO");
+                    PedidoDAO pediDAO = new PedidoDAO();
+                    int res = pediDAO.GenerarCompra(pediVO);
+                    if (res != 0 && totalaPagar > 0) {
+                        request.setAttribute("MensajeExito", "Se guardo con exito");
+                    } else {
+                        request.setAttribute("MensajeError", "NO Se guardo con exito");
+                    }
                 }
                 request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+
                 break;
             default:
                 request.setAttribute("productos", prodVo);

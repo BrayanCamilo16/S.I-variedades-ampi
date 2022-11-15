@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.fondoRR{
+    background: url("../img/pasillo.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+#containerRR{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filterr{
+    -webkit-backdrop-filter:blur(15px);
+    backdrop-filter:blur(10px);
+    background-color: rgba(243,243,243,0.2);
+}
+.todoi{
+    width: 600px;
+    background: #D5D8DC;
+    padding: 20px 0;
+/*    primer valor es en x, el segundo en y, el tercero el desenfoque, el cuarto es como un padding*/
+    box-shadow: inset 0 0 10px 0 #164473;
+    border-radius: 10px
+}
+.todoi img{
+    padding-bottom: 10px; 
+    margin: auto;
+    display: block;
+    width: 250px;
+    height: 110px;
+}
+.formue{
+    width: 500px;
+    margin: auto;
+    display: block;
+    background: #fff;
+    padding: 20px
+}
+.nueva label, .confirmo label{
+    margin: 20px 30px;
+    font-family: 'Kaushan Script', cursive;
+    display: block;
+    font-size: 22px;
+    letter-spacing: 1px
+}
+.nueva input, .confirmo input{
+    margin-bottom: 10px;
+    width: 90%;
+    margin: auto;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: #164473 solid 1px;
+}
+.nueva .eye, .confirmo .eye{
+    position: absolute;
+    right: 35.5%;
+    text-align: center;
+    margin-top: -25px;
+    cursor: pointer;
+}
+.ali{
+    width: 90%;
+    border: none;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    background: #0059FF;
+    margin: auto;
+    display: block;
+}

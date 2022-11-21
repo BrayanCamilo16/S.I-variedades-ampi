@@ -48,7 +48,7 @@
                                         <span class="muevase">Correo electr&#243;nico</span>
                                     </div>
                                 </div>
-                                <span class="correoText"></span>
+                                <span class="correoText" id="correoText"></span>
 
 
 
@@ -161,7 +161,7 @@
                 mensaje.style.width = "100%";
                 e.preventDefault();
             }
-            
+
         });
 
 
@@ -232,9 +232,12 @@
                 correoText.style.color = "#ff0000";
                 correoText.style.marginLeft = "18px";
                 correoText.style.display = "block";
-
             }
-
+            function correo(e, email) {
+                e.preventDefault();
+                console.log(email);
+                correoText.innerHTML = "Este correo ya existe";
+            }
         });
 
 
@@ -261,4 +264,28 @@
 
         });
     </script>
+
+    <script>
+        emailInput =   document.getElementById('emailSingup');
+        emailInput.addEventListener("blur", ()=>{
+            isEmailInDb();
+        });
+        
+        function isEmailInDb() {
+            var parametro = {
+                "action": 12,
+                "email": document.getElementById('emailSingup').value
+            }
+            $.ajax({
+                data: parametro,
+                url: 'Usuario',
+                type: 'POST',
+                success: function (response) {
+                    $('#correoText').html(response);
+                    document.getElementById('correoText').style.color = "#ff0000";
+                }
+            });
+        }
+    </script>
+
 </body>

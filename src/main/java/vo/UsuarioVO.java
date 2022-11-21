@@ -22,6 +22,10 @@ public class UsuarioVO {
     public UsuarioVO() {
     }
 
+    public UsuarioVO(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
     public UsuarioVO(String emailUsuario, String passUsuario) {
         this.emailUsuario = emailUsuario;
         this.passUsuario = passUsuario;

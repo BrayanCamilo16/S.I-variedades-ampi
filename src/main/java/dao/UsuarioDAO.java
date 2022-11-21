@@ -171,6 +171,32 @@ public class UsuarioDAO extends Conexion2 implements IUsuarioDAO {
         }
         return usus;
     }
+    
+    public String getAddresUser(String usuId) {
+        String addresUser = "";
+        sql = "select direccion_usuario from usuario where id_usuario = ?";
+        try {
+            conn = this.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuId);
+            rs = stmt.executeQuery();
+            //esto reornara un boolean
+            if (rs.next()) {
+                addresUser= rs.getString(1);
+            }
+//            this.close();
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } //
+        finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return addresUser;
+    }
 
     @Override
     public boolean update() {

@@ -17,7 +17,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Producto</th>
+<!--                                <th>Producto</th>-->
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Precio</th>
@@ -29,12 +29,12 @@
                         <tbody>
                             <c:forEach var="car" items="${carrito}">
                                 <tr>
-                                    <td>${car.getItem()}</td>
-                                    <td><img src="${pageContext.request.contextPath}/files/producto/${car.getImagenProducto()}"/></td>
+                                    <td>${car.getItem()}</td>   
+<!--                                    <td><img src="${pageContext.request.contextPath}/files/producto/${car.getImagenProducto()}"/></td>-->
                                     <td>${car.getNombre()}</td>
                                     <td>${car.getDescripcion()}</td>
                                     <td>$${car.getPrecioCompra()}</td>
-                                    <td class="clk">
+                                    <td>
                                         <form method="POST" action="${pageContext.request.contextPath}/EjemploCarrito?accion=RestarCarrito&id=${car.getIdProdu()}">
                                             <button type="submit" class="border-0 bg-transparent"><i class="fas fa-minus-circle me-2 text-danger"></i></button>
                                         </form>
@@ -61,9 +61,9 @@
                         </div>
                         <div class="tarjetap">
                             <label>Subtotal:</label>
-                            <input type="text" value="$${monto}" readonly="">
+                            <input type="text" value="$${sub}" readonly="">
                             <label>Descuento:</label>
-                            <input type="text" value="$ 0.0" readonly="">
+                            <input type="text" value="${desc}" readonly="">
                             <label>Total a pagar:</label>
                             <input type="text" value="$${monto}" readonly="">
                         </div>

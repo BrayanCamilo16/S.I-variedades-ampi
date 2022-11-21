@@ -14,7 +14,7 @@
         <div class="slider-section">
             <div class="contenido-caja">
                 <div class="contenido-imagen">
-                    <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="alt" class="imagen"/>
+                    <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" loading="lazy" alt="alt" class="imagen"/>
                 </div>
                 <div class="contenido-tarjeta">
                     <h1 class="nombre"><%= productoVo.getNombreProducto()%></h1>

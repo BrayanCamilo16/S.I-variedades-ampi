@@ -66,7 +66,7 @@
                             <label>Subtotal:</label>
                             <input type="text" value="$${monto}" readonly="">
                             <label>Descuento:</label>
-                            <input type="text" value="$ 0.0" readonly="">
+                            <input type="text" value="${desc}" readonly="">
                             <label>Total a pagar:</label>
                             <input type="text" value="$${monto}" readonly="">
                         </div>

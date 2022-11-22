@@ -135,48 +135,48 @@ public class UsuarioDAO extends Conexion2 implements IUsuarioDAO {
     }
 //principals
 
-    public UsuarioVO leerUsuarioPorID(String usuId) {
-        UsuarioVO usus = new UsuarioVO();
-        sql = "select * from usuario where id_usuario = ?";
-        try {
-            conn = this.getConnection();
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuId);
-            rs = stmt.executeQuery();
-            //esto reornara un boolean
-            if (rs.next()) {
-                usus.setIdUsuario(rs.getInt("id_usuario"));
-                usus.setEmailUsuario(rs.getString("email_usuario"));
-                usus.setPassUsuario(rs.getString("pass_usuario"));
-                usus.setNombreUsuario(rs.getString("nombre_usuario"));
-                usus.setApellidoUsuario(rs.getString("apellido_usuario"));
-                usus.setNumDocumentoUsuario(rs.getString("num_documento_usuario"));
-                usus.setTelefonoUsuario(rs.getString("telefono_usuario"));
-                usus.setDireccionUsuario(rs.getString("direccion_usuario"));
-                usus.setSexoUsuario(rs.getString("sexo_usuario"));
-                usus.setEstadoUsuario(rs.getBoolean("estado_usuario"));
-                usus.setIdRol(rs.getString("id_rol_FK"));
-                usus.setTipoDocumento(rs.getString("id_tipo_doc_fk"));
-            }
-            this.close();
-        } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        } //
-        finally {
-            try {
-                this.close();
-            } catch (Exception e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-        return usus;
-    }
+//    public UsuarioVO leerUsuarioPorID(String usuId) {
+//        UsuarioVO usus = new UsuarioVO();
+//        sql = "select * from usuario where id_usuario = ?";
+//        try {
+//            conn = this.getConnection();
+//            stmt = conn.prepareStatement(sql);
+//            stmt.setString(1, usuId);
+//            rs = stmt.executeQuery();
+//            //esto reornara un boolean
+//            if (rs.next()) {
+//                usus.setIdUsuario(rs.getInt("id_usuario"));
+//                usus.setEmailUsuario(rs.getString("email_usuario"));
+//                usus.setPassUsuario(rs.getString("pass_usuario"));
+//                usus.setNombreUsuario(rs.getString("nombre_usuario"));
+//                usus.setApellidoUsuario(rs.getString("apellido_usuario"));
+//                usus.setNumDocumentoUsuario(rs.getString("num_documento_usuario"));
+//                usus.setTelefonoUsuario(rs.getString("telefono_usuario"));
+//                usus.setDireccionUsuario(rs.getString("direccion_usuario"));
+//                usus.setSexoUsuario(rs.getString("sexo_usuario"));
+//                usus.setEstadoUsuario(rs.getBoolean("estado_usuario"));
+//                usus.setIdRol(rs.getString("id_rol_FK"));
+//                usus.setTipoDocumento(rs.getString("id_tipo_doc_fk"));
+//            }
+//            this.close();
+//        } catch (SQLException e) {
+//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+//        } //
+//        finally {
+//            try {
+//                this.close();
+//            } catch (Exception e) {
+//                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+//            }
+//        }
+//        return usus;
+//    }
 
     @Override
     public boolean update() {
         UsuarioVO usuario = null;
         try {
-            sql = "update usuario set nombre_usuario=?, apellido_usuario=?, email_usuario=?, pass_usuario=?, num_documento_usuario=?, telefono_usuario=?, direccion_usuario=?, sexo_usuario=?, estado_usuario=?, id_rol_FK=?,  id_tipo_doc_FK=? where id_usuario=?";
+            sql = "update usuario set nombre_usuario=?, apellido_usuario=?, email_usuario=?, pass_usuario=?, num_documento_usuario=?, telefono_usuario=?, direccion_usuario=?, sexo_usuario=?, id_tipo_doc_FK=? where id_usuario=?";
 
             conn = this.getConnection();
             //crear el puente, prepara lo que va a mandar
@@ -191,10 +191,8 @@ public class UsuarioDAO extends Conexion2 implements IUsuarioDAO {
             stmt.setString(6, telefono);
             stmt.setString(7, direccion);
             stmt.setString(8, sexo);
-            stmt.setBoolean(9, estado);
-            stmt.setString(10, rol);
-            stmt.setString(11, TipoDocu);
-            stmt.setInt(12, usuId);
+            stmt.setString(9, TipoDocu);
+            stmt.setInt(10, usuId);
             stmt.executeUpdate();
             operacionExitosa = true;
 

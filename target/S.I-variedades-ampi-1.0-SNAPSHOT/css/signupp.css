@@ -86,3 +86,16 @@
     font-size: 25px;
     display: block;
 }
+.registro-lo{
+    width: 90%;
+    border: none;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    color: white;
+    background: #0059FF;
+    margin: auto;
+    display: block
+}

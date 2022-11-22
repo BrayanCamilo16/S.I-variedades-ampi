@@ -17,22 +17,47 @@
         <%//cuando es diferente a nulo es que si hubo un error
             //este es el mensaje de activar e inactivar
             if (request.getAttribute("titleerror") != null) {%>
-        ${titleerror}
-        <%} else {%>
-        ${titleexito}
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                html:'${titleerror}',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true
+            });
+        </script>
+        <%} else if (request.getAttribute("titleexito") != null) {%>
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                position: 'top-end',
+                html:'${titleexito}',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true
+            });
+        </script>
         <%}%>
+
 
         <%//cuando es diferente a nulo es que si hubo un error
             //este es el mensaje de usuario creado exitosamente o no
-            HttpSession sesiones = request.getSession();
-            if (sesiones.getAttribute("mensajeErroro") != null) {%>
+            if (request.getAttribute("mensajeErroro") != null) {%>
         <script>
-            alert("${mensajeErroro}");
+            Swal.fire(
+                    'No se puedo registrar!',
+                    '${mensajeErroro}',
+                    'error'
+                    );
         </script>
 
-        <%} else if (sesiones.getAttribute("mensajeExitoo") != null) {%>
+        <%} else if (request.getAttribute("mensajeExitoo") != null) {%>
         <script>
-            alert("${mensajeExitoo}");
+            Swal.fire(
+                    'Registro Exitoso!',
+                    '${mensajeExitoo}',
+                    'success'
+                    );
         </script>
         <%}%>
         <div class="container">
@@ -90,21 +115,21 @@
                                 <td><%=user.getDireccionUsuario()%></td>
                                 <td><%=user.getSexoUsuario()%></td>
                                 <td><%=user.getIdRol()%></td>
-                                <td class="d-flex justify-content-evenly align-items-center h-100">
+                                <td class="clkk">
                                     <form action="${pageContext.request.contextPath}/Usuario"  method="POST" >
                                         <input type="hidden" name="codigo" value="<%=user.getIdUsuario()%>">
                                         <input type="hidden" name="action" value="6">
-                                        <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#update"><i class="fas fa-edit text-info"></i></button>
+                                        <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#update"><i class="fas fa-edit text-info" style="font-size: 20px; padding: 0 10px;"></i></button>
                                     </form>
                                     <%
                                         if (user.isEstadoUsuario() == true) {%>
                                     <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
-                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaInactivar(<%=user.getIdUsuario()%>, true)"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 25px;"></i></button>
+                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaInactivar(<%=user.getIdUsuario()%>, true)"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 22px;"></i></button>
 
 
                                     <%} else if (user.isEstadoUsuario() == false) {%>
                                     <input type="hidden" name="codigoId" value="<%=user.getIdUsuario()%>">
-                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaActivar(<%=user.getIdUsuario()%>, false)"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 25px;"></i></button>
+                                    <button class="btn-transparent border-0 bg-transparent" onclick="alertaActivar(<%=user.getIdUsuario()%>, false)"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 22px;"></i></button>
                                         <%}%>
                                 </td>
                             </tr>

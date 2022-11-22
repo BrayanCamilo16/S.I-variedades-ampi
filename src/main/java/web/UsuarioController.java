@@ -147,21 +147,11 @@ public class UsuarioController extends HttpServlet {
             break;
 
             case 3: // update
-
-//                if (
-//                        !request.getParameter("codigoId").equals("")
-//                        && !request.getParameter("rol").equals("")) {
-////                    usuaVO = new UsuarioVO(Integer.parseInt(request.getParameter("codigoId")),
-////                            request.getParameter("email"), request.getParameter("pass"),
-////                            request.getParameter("nombre"), request.getParameter("apellido"),
-////                            request.getParameter("numDocu"), request.getParameter("telefono"),
-////                            request.getParameter("direccion"), request.getParameter("sexo"), true,
-////                            request.getParameter("rol"), request.getParameter("tipoDocu"));
-//                HttpSession sessioon = request.getSession();
-//                UsuarioVO usuaaaVO = (UsuarioVO) sessioon.getAttribute("usuarioVo");
-                UsuarioVO US = new UsuarioVO();
+                HttpSession sessioon = request.getSession();
+                UsuarioVO usuaaaVO = (UsuarioVO) sessioon.getAttribute("usuarioVo");
+                UsuarioVO US = new UsuarioVO(email, pass, nombre, apellido, numDocu, telefono, direccion, sexo, Boolean.parseBoolean(estadoUnico), " ", tipoDocu);
                 UsuarioDAO usuaaDAO = new UsuarioDAO(US);
-                if (usuaaDAO.updateAdministrador()) {
+                if (usuaaDAO.update()) {
                     request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
                     request.setAttribute("mensajeExito", "Los datos se modificaron correctamente");
 
@@ -172,39 +162,38 @@ public class UsuarioController extends HttpServlet {
                 }
                 break;
 
-            case 4: // leer por id del usuario
-                UsuarioVO ususVO = new UsuarioVO();
-                UsuarioDAO ususDAO = new UsuarioDAO();
+            case 4:
+                UsuarioVO USUV = new UsuarioVO();
+                UsuarioDAO USUD = new UsuarioDAO();
+                UsuarioVO us = USUD.consultarId(Integer.parseInt(codigo));
 
-                if (request.getParameter("codigoId") != null) {
-                    ususVO = ususDAO.leerUsuarioPorID(request.getParameter("codigoId"));
-
-                    request.setAttribute("UsuarioConsultado", ususVO);
-                    HttpSession session = request.getSession();
-                    UsuarioVO ususuuVO = (UsuarioVO) session.getAttribute("usuarioVo");
-
-                    if (ususVO != null) {
-
-                        if (ususuuVO.getIdRol().equals(1)) {
-                            request.getRequestDispatcher("admin/updateUser.jsp").forward(request, response);
-                        } else {
-                            request.getRequestDispatcher("vendedor/ActualizarPerfilE.jsp").forward(request, response);
-                        }
-
+                if (us.getIdRol().equals("1")) {
+                    if (us != null) {
+                        request.setAttribute("UsuarioR", us);
+                        request.getRequestDispatcher("admin/").forward(request, response);
                     } else {
-                        if (ususuuVO.getIdRol().equals(1)) {
-                            request.setAttribute("MensajeError", "El usuario no esta registrado");
-                            request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
-                        } else {
-                            request.setAttribute("MensajeError", "El usuario no esta registrado");
-                            request.getRequestDispatcher("vendedor/index.jsp").forward(request, response);
-                        }
+                        request.setAttribute("MensajeError", "No esta");
+                        request.getRequestDispatcher("admin/").forward(request, response);
                     }
-
+//                } else if (USUV.getIdRol().equals("2")) {
+//                    if (us != null) {
+//                        request.setAttribute("UsuarioR", us);
+//                        request.getRequestDispatcher("vendedor/index.jsp").forward(request, response);
+//                    } else {
+//                        request.setAttribute("MensajeError", "No esta");
+//                        request.getRequestDispatcher("vendedor/index.jsp").forward(request, response);
+//                    }
+//                } else if (USUV.getIdRol().equals("3")) {
+//                    if (us != null) {
+//                        request.setAttribute("UsuarioR", us);
+//                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
+//                    } else {
+//                        request.setAttribute("MensajeError", "No esta");
+//                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
+//                    }
                 } else {
-                    request.setAttribute("mensajeerror", "No se encontro el parametro necesario");
+                    request.setAttribute("MensajeError", "No esta el rol, no existe");
                 }
-
                 break;
 
             case 6:
@@ -301,15 +290,14 @@ public class UsuarioController extends HttpServlet {
                         + "y tu contraseña para iniciar sesion es: <b>" + pass + " " + "</b></p><p>Recuerda cambiar tu contraseña.</p>"
                         + "Disfruta <a href=\"http://localhost:8080/variedades-ampi/index.jsp\">Variedades Ampi</a>";
                 //SI ESTO RETORNA UN VERDADERO RETORNA UN MENSAJE EXITO
-                HttpSession obtenerSesion = request.getSession();
                 try {
                     EnvioCorreo.enviarCorreo(servidor, puerto, usuario, clave, email, asunto3, contenido3);
                     if (usuDAO.insert()) {
-                        obtenerSesion.setAttribute("mensajeExitoo", "El usuario" + " " + nombre + " " + apellido + " " + "se registro correctamente");
-                        response.sendRedirect("admin/usuarios.jsp");
+                        request.setAttribute("mensajeExitoo", "El usuario" + " " + nombre + " " + apellido + " " + "se registro correctamente");
+                        request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
                     } else {
-                        obtenerSesion.setAttribute("mensajeErroro", "El usuario no se registro correctamente");
-                        response.sendRedirect("admin/usuarios.jsp");
+                        request.setAttribute("mensajeErroro", "El usuario no se registro correctamente");
+                        request.getRequestDispatcher("admin/usuarios.jsp").forward(request, response);
                     }
 
                 } catch (MessagingException e) {

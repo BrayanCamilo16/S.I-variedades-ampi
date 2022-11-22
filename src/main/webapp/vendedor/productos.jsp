@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="vo.ProductoVO"%>
 <%@include file="../cache.jsp" %>
-<%@include file="ValidarRolAdmin.jsp" %>
+<%@include file="ValidarRolVendedor.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

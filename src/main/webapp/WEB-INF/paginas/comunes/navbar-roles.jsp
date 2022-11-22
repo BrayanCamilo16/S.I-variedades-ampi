@@ -37,6 +37,11 @@
                             <img src="${pageContext.request.contextPath}/img/admin.png" alt=""/>
                             <h1><%=elrol%></h1>
                             <h2>${usuarioVo.emailUsuario}</h2>
+                            <form action="${pageContext.request.contextPath}/Usuario" method="POST">
+                                <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
+                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <input type="hidden" name="action" value="4">
+                            </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">
                                 <input type="submit" value="Cerrar sesi&#243;n" class="CerrarSesion">
                             </form>
@@ -63,8 +68,8 @@
                             <h1><%=elrol%></h1>
                             <h2>${usuarioVo.emailUsuario}</h2>
                             <form action="${pageContext.request.contextPath}/Usuario" method="POST">
-                                <input type="hidden" name="codigoId" value="${usuarioVo.idUsuario}">
-                                <a><button type="submit">Actualizar Mi Perfil</button></a>
+                                <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
+                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                 <input type="hidden" name="action" value="4">
                             </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">
@@ -92,6 +97,11 @@
                             <img src="${pageContext.request.contextPath}/img/cliente.png" alt=""/>
                             <h1><%=elrol%></h1>
                             <h2>${usuarioVo.emailUsuario}</h2>
+                            <form action="${pageContext.request.contextPath}/Usuario" method="POST">
+                                <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
+                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <input type="hidden" name="action" value="4">
+                            </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">
                                 <input type="submit" value="Cerrar sesi&#243;n" class="CerrarSesion">
                             </form>

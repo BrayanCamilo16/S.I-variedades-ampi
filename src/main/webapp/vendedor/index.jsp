@@ -4,9 +4,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Variedades Ampi|Vendedor</title>
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo-variedades-ampi.png"/>
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
+        <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
     </head>
     <body>
         <!-- header  -->
@@ -53,5 +52,9 @@
         <!-- footer  -->
         <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->
+        
+        <jsp:include page="/WEB-INF/paginas/comunes/archivos-js.jsp" />
+        
+        <jsp:include page="../WEB-INF/paginas/ActualizarPerfil.jsp" />
     </body>
 </html>

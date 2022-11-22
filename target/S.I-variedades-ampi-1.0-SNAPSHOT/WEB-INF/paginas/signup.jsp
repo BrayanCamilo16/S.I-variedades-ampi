@@ -109,7 +109,7 @@
                                     <p id="mensaje1" class="d-none">Por favor suministre bien los campos para hacer el registro correctamente.<i class="fa-solid fa-circle-exclamation"></i></p>
                                     <p id="mensaje2" class="d-none">Por favor seleccione el no soy un robot.<i class="fa-solid fa-circle-exclamation"></i></p>
                                     <div class="g-recaptcha" data-sitekey="6Ld_AhkiAAAAAA1ltvB7iId9Ga3VczHWVSJ2qFVo"></div><br><br>
-                                    <button type="submit" class="btn btn-primary btn-lg">Registrarte<i class="fa-solid fa-user-plus"></i></button>
+                                    <button type="submit" class="registro-lo">Registrarme<i class="fa-solid fa-user-plus"></i></button>
 
                                 </div>
                             </div>

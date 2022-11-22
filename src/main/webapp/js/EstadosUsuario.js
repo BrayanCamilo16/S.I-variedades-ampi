@@ -6,6 +6,7 @@ function alertaInactivar(codigoId, estado) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
         confirmButtonText: 'SI, Inactivar!'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -22,6 +23,7 @@ function alertaActivar(codigoId, estado) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
         confirmButtonText: 'SI, Activar!'
     }).then((result) => {
         if (result.isConfirmed) {

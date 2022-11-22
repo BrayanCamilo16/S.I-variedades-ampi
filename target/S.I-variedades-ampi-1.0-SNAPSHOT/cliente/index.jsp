@@ -63,7 +63,7 @@
         <!-- File js  -->
         <jsp:include page="../WEB-INF/paginas/comunes/archivos-js.jsp" />
         <!-- /File js  -->
-
+        <jsp:include page="../WEB-INF/paginas/ActualizarPerfil.jsp" />
         <jsp:include page="../WEB-INF/paginas/comunes/alerta-modal.jsp" />
         <script src="${pageContext.request.contextPath}/js/sliderCategorias.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/js/sliderProductos.js" type="text/javascript"></script>

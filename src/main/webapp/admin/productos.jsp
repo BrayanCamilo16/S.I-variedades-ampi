@@ -59,7 +59,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%  
+                            <%
                                 ProductoDAO productoDao = new ProductoDAO();
                                 ProductoVO productoVo = null;
                                 List<ProductoVO> productos = productoDao.selectAllProducts();
@@ -76,24 +76,32 @@
                                 <td><%= productoVo.getDescripcionProducto()%></td>
                                 <td>$ <%= f.format(productoVo.getPrecioUnitarioProducto())%></td>
                                 <td><%= f.format(productoVo.getStockProducto())%></td>
-                                <td><%= productoVo.getEstadoProducto()%></td>
+                                <td>
+                                    <%
+                                        if (productoVo.getEstadoProducto().equals("Activo")) {%>
+                                    <button class="btn btn-primary rounded-pill"><%= productoVo.getEstadoProducto()%></button>
+                                    <%} else if (productoVo.getEstadoProducto().equals("Inactivo")) {%>
+                                    <button class="btn btn-danger rounded-pill"><%= productoVo.getEstadoProducto()%></button>
+
+                                    <%}%>
+                                </td>
                                 <td><img  src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="<%= productoVo.getNombreProducto()%>"/></td>
-                                <td class="d-flex justify-content-evenly align-items-center h-100">
+                                <td class="clkkl">
                                     <form action="${pageContext.request.contextPath}/Producto" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="idProducto" value="<%= productoVo.getIdProducto()%>">
                                         <input type="hidden" name="opcion" value="1">
-                                        <button type="submit" class="border-0 bg-transparent text-primary"><i class="fas fa-edit"></i></button>
+                                        <button type="submit" class="border-0 bg-transparent text-primary"><i class="fas fa-edit text-info" style="font-size: 20px; padding: 10px 10px;"></i></button>
                                     </form>
                                     <%
                                         if (productoVo.getEstadoProducto().equals("Activo")) {%>
 
                                     <input type="hidden" name="codigoId" value="<%=productoVo.getIdProducto()%>">
-                                    <button class="btn-transparent border-0 bg-transparent py-2" onclick="alertaInactivarP(<%=productoVo.getIdProducto()%>, 'Activo')"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 25px;"></i></button>
+                                    <button class="btn-transparent border-0 bg-transparent py-2" onclick="alertaInactivarP(<%=productoVo.getIdProducto()%>, 'Activo')"><i class="bi bi-person-check-fill fa-x5 text-primary" style="font-size: 22px;"></i></button>
 
                                     <%} else if (productoVo.getEstadoProducto().equals("Inactivo")) {%>
 
                                     <input type="hidden" name="codigoId" value="<%=productoVo.getIdProducto()%>">
-                                    <button class="btn-transparent border-0 bg-transparent py-2" onclick="alertaActivarP(<%=productoVo.getIdProducto()%>, 'Inactivo')"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 25px;"></i></button>
+                                    <button class="btn-transparent border-0 bg-transparent py-2" onclick="alertaActivarP(<%=productoVo.getIdProducto()%>, 'Inactivo')"><i class="bi bi-person-x-fill fa-x5 text-danger" style="font-size: 22px;"></i></button>
 
                                     <%}%>
                                 </td>

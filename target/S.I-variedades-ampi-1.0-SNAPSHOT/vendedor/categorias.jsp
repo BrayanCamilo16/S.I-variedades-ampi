@@ -2,7 +2,7 @@
 <%@page import="vo.CategoriaVO"%>
 <%@page import="dao.CategoriaDAO"%>
 <%@include file="../cache.jsp" %>
-<%@include file="ValidarRolAdmin.jsp" %>
+<%@include file="ValidarRolVendedor.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

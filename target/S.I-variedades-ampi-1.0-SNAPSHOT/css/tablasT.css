@@ -49,6 +49,20 @@
     text-align: center;
     border-bottom: 1px solid #dddddd;
 }
+.content-table tbody tr .clkk{
+    margin-top:10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: none
+}
+.content-table tbody tr .clkkl{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: none
+}
 .content-table tbody tr td img{
     border-radius: 5px;
     width: 80px;

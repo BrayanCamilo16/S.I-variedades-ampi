@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h3 class="modal-title fw-bold lead">${tituloExito} ${tituloError}</h5>
+                <h3 class="modal-title fw-bold lead">${tituloExito} ${tituloError} </h3>
                     <button type="button" class="text-white bg-transparent border-0" id="closeModal" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">

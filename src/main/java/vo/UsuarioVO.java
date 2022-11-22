@@ -22,6 +22,19 @@ public class UsuarioVO {
     public UsuarioVO() {
     }
 
+    public UsuarioVO(int idUsuario, String emailUsuario, String passUsuario, String nombreUsuario, String apellidoUsuario, String numDocumentoUsuario, String telefonoUsuario, String direccionUsuario, String sexoUsuario, String TipoDocumento) {
+        this.idUsuario = idUsuario;
+        this.emailUsuario = emailUsuario;
+        this.passUsuario = passUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.apellidoUsuario = apellidoUsuario;
+        this.numDocumentoUsuario = numDocumentoUsuario;
+        this.telefonoUsuario = telefonoUsuario;
+        this.direccionUsuario = direccionUsuario;
+        this.sexoUsuario = sexoUsuario;
+        this.TipoDocumento = TipoDocumento;
+    }
+
     public UsuarioVO(String emailUsuario, String passUsuario) {
         this.emailUsuario = emailUsuario;
         this.passUsuario = passUsuario;
@@ -79,9 +92,7 @@ public class UsuarioVO {
         this.estadoUsuario = estadoUsuario;
         this.idRol = idRol;
     }
-
     
-
     public int getIdUsuario() {
         return idUsuario;
     }

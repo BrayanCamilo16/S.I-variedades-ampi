@@ -14,7 +14,7 @@
         <div class="slider-section">
             <div class="contenido-caja">
                 <div class="contenido-imagen">
-                    <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" alt="alt" class="imagen"/>
+                    <img src="${pageContext.request.contextPath}/files/producto/<%= productoVo.getNombreImgProducto()%>" loading="lazy" alt="alt" class="imagen"/>
                 </div>
                 <div class="contenido-tarjeta">
                     <h1 class="nombre"><%= productoVo.getNombreProducto()%></h1>
@@ -34,6 +34,6 @@
             }
         %>
     </div>
-    <i class="fas fa-chevron-circle-right slider-btn slider-btn-right" id="btn-right"></i>
-    <i class="fas fa-chevron-circle-left slider-btn slider-btn-left" id="btn-left"></i>
+    <i class="fas fa-chevron-circle-right slider-btn-right slider-btn" id="btn-right"></i>
+    <i class="fas fa-chevron-circle-left slider-btn-left slider-btn" id="btn-left"></i>
 </div>

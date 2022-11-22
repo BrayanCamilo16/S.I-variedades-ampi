@@ -13,7 +13,7 @@
 <link href="${pageContext.request.contextPath}/css/categorias.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/recoverPass.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/Carritoo.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath}/css/cliente.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/css/clie.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/modales.css" rel="stylesheet" type="text/css"/>
 <script src="https://kit.fontawesome.com/dca352768f.js" crossorigin="anonymous"></script>
 <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">

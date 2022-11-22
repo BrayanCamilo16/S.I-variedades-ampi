@@ -29,7 +29,7 @@
                         <tbody>
                             <c:forEach var="car" items="${carrito}">
                                 <tr>
-                                    <td>${car.getItem()}</td>
+                                    <td>${car.getItem()}</td>   
                                     <td><img src="${pageContext.request.contextPath}/files/producto/${car.getImagenProducto()}"/></td>
                                     <td>${car.getNombre()}</td>
                                     <td>${car.getDescripcion()}</td>
@@ -61,9 +61,9 @@
                         </div>
                         <div class="tarjetap">
                             <label>Subtotal:</label>
-                            <input type="text" value="$${monto}" readonly="">
+                            <input type="text" value="$${sub}" readonly="">
                             <label>Descuento:</label>
-                            <input type="text" value="$ 0.0" readonly="">
+                            <input type="text" value="${desc}" readonly="">
                             <label>Total a pagar:</label>
                             <input type="text" value="$${monto}" readonly="">
                         </div>

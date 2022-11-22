@@ -2,7 +2,10 @@ package web;
 
 import dao.UsuarioDAO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
+import static java.lang.Integer.min;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -306,6 +309,21 @@ public class UsuarioController extends HttpServlet {
                 }
             }
             break;
+            case 12:
+                UsuarioVO V = new UsuarioVO(email);
+                UsuarioDAO usv = new UsuarioDAO(V);
+
+                try ( PrintWriter out = response.getWriter()) {
+                    if (usv.RecibirEmail(email)) {
+                        out.print("El correo ya existe, pruebe con otro");
+                    }else{
+                        out.print("El correo es valido");
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println(" ex = " + ex);
+                }
+                break;
         }
 
     }

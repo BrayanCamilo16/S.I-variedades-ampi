@@ -1,0 +1,80 @@
+.todoContenidoooo{
+    background: url("../img/vende.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+#medioContenidoooo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.medioContenidoooo{
+    -webkit-backdrop-medioContenido:blur(15px);
+    backdrop-medioContenido:blur(15px);
+    background-color: rgba(134, 177, 250, 0.5)
+}
+.cajasii{
+    text-align: center;
+    margin: 20px;
+}
+.cajadd{
+    width: 350px;
+    background: #6A99FF;
+    text-align: center;
+    overflow: hidden;
+    box-shadow:  0 5px 10px rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.cajadd a{
+    color: white;
+    text-decoration: none;
+}
+.cajadd:hover{
+    box-shadow:  5px 5px 20px rgb(0, 0, 0);
+    transform: translateY(-4%);
+    transition: all 400ms ease;
+}
+.cajadd .hol{
+    margin: auto;
+    display: block;
+    font-size: 120px;
+    color: white;
+    padding: 10px 0
+} 
+.cajadd .con{
+    font-size: 18px;
+    font-weight: 200;
+    color: white;
+}
+.cajadd h1{
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+    background: #256AFF;
+    padding: 15px
+}
+.masII{
+    border-top: 1px solid white;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 30px;
+    background: #256AFF;
+}
+.icono{
+    font-size: 3.125rem;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    transform: rotateX(360deg);
+}
+.carro-iconoo{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    background-color: #0051FF;
+    position: absolute;
+    right: 0px;
+    top: 500px;
+}

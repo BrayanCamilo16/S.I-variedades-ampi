@@ -13,10 +13,14 @@
     <head>
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
-        <title>Mis pedidos</title>
     </head>
-    <body>
+    <body class="position-relavite">
+
+        <!-- Navbar  -->
         <jsp:include page="../WEB-INF/paginas/comunes/navbar-enlaces.jsp" />
+        <!-- /Navbar  -->
+
+        <jsp:include page="../WEB-INF/paginas/comunes/alerta.jsp" />
         <div class="container">
             <div class="row">
                 <!--<div class="col-md-2"></div>-->
@@ -30,12 +34,11 @@
                                 <th scope="col" class="text-center">Total</th>
                                 <th scope="col" class="text-center">Fecha</th>
                                 <th scope="col" class="text-center">Estado</th>
+                                <th scope="col" class="text-center">fatura</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%                                
-                                HttpSession sesionn = request.getSession();
-                                UsuarioVO usuarioVo = (UsuarioVO) sesionn.getAttribute("usuarioVo");
+                            <%                                UsuarioVO usuarioVo = (UsuarioVO) sesion.getAttribute("usuarioVo");
                                 PedidoDAO pedidoDao = new PedidoDAO();
                                 ProductoDAO productoDao = new ProductoDAO();
                                 PedidoVO pedidoVo = null;
@@ -58,6 +61,10 @@
                                 <td class="text-center"><fmt:formatNumber value="<%= productoVo.getPrecioUnitarioProducto() * productoVo.getCantidad()%>" type="currency" /></td>
                                 <td class="text-center"><%= pedidoVo.getFechaEntrega()%></td>
                                 <td class="text-center"><%= pedidoVo.getEstadoPedido()%></td>
+                                <td class="text-center" ><a href="facturas.jsp" style="text-decoration:none ">ver factura</td>
+                                
+
+
                             </tr>
                             <%
                                 }
@@ -67,6 +74,6 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
+                        <jsp:include page="../WEB-INF/paginas/comunes/footer.jsp" />
     </body>
 </html>

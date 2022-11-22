@@ -129,9 +129,6 @@
             <li class="listass-enlacess">
                 <a aria-current="page" href="${pageContext.request.contextPath}/cliente/pedidos.jsp" class="enlacesss">Pedidos<i class="fas fa-solid fa-cart-arrow-down"></i></a>
             </li>
-            <li class="listass-enlacess">
-                <a aria-current="page" href="${pageContext.request.contextPath}/cliente/facturas.jsp" class="enlacesss">Facturas<i class="fas fa-solid fa-file-invoice-dollar"></i></a>
-            </li>
             <!--                <li>
                                 <button class="nav-link btn btn-transparent text-dark mx-2"><i
                                         class="far fa-bell"></i></button>

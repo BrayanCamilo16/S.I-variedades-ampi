@@ -21,7 +21,7 @@ public class UsuarioVO {
 
     public UsuarioVO() {
     }
-
+    
     public UsuarioVO(int idUsuario, String emailUsuario, String passUsuario, String nombreUsuario, String apellidoUsuario, String numDocumentoUsuario, String telefonoUsuario, String direccionUsuario, String sexoUsuario, String TipoDocumento) {
         this.idUsuario = idUsuario;
         this.emailUsuario = emailUsuario;
@@ -33,6 +33,10 @@ public class UsuarioVO {
         this.direccionUsuario = direccionUsuario;
         this.sexoUsuario = sexoUsuario;
         this.TipoDocumento = TipoDocumento;
+    }
+
+    public UsuarioVO(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
     }
 
     public UsuarioVO(String emailUsuario, String passUsuario) {
@@ -92,7 +96,7 @@ public class UsuarioVO {
         this.estadoUsuario = estadoUsuario;
         this.idRol = idRol;
     }
-    
+
     public int getIdUsuario() {
         return idUsuario;
     }

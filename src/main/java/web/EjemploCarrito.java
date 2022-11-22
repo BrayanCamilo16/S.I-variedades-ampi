@@ -47,6 +47,8 @@ public class EjemploCarrito extends HttpServlet {
 
     int idproducto;
     CarritoVO car;
+    double descuento = 0.0;
+    double subtotal = 0.0;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -79,8 +81,8 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("contador", listarCarrito.size());
                 request.getRequestDispatcher("Carrito.jsp").forward(request, response);
                 break;
-                
-                case "ComprarCliente":
+
+            case "ComprarCliente":
                 totalaPagar = 0.0;
                 idproducto = Integer.parseInt(request.getParameter("id"));
                 productoV = produDao.selectById(idproducto);
@@ -100,13 +102,13 @@ public class EjemploCarrito extends HttpServlet {
                 for (int i = 0; i < listarCarrito.size(); i++) {
                     totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
                 }
+
                 request.setAttribute("monto", totalaPagar);
                 request.setAttribute("carrito", listarCarrito);
                 request.setAttribute("contador", listarCarrito.size());
                 request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
                 break;
-                
-                
+
             case "AgregarCarrito":
                 int posicionProducto = 0;
                 cantidad = 1;
@@ -123,9 +125,9 @@ public class EjemploCarrito extends HttpServlet {
                     }
                     if (idproducto == listarCarrito.get(posicionProducto).getIdProdu()) {
                         cantidad = listarCarrito.get(posicionProducto).getCantidad() + cantidad;
-                        double subtotal = listarCarrito.get(posicionProducto).getPrecioCompra() * cantidad;
+                        double subtotall = listarCarrito.get(posicionProducto).getPrecioCompra() * cantidad;
                         listarCarrito.get(posicionProducto).setCantidad(cantidad);
-                        listarCarrito.get(posicionProducto).setSubtotal(subtotal);
+                        listarCarrito.get(posicionProducto).setSubtotal(subtotall);
                     } else {
                         //variables del carrito
                         item = item + 1;
@@ -175,9 +177,9 @@ public class EjemploCarrito extends HttpServlet {
                     }
                     if (idproducto == listarCarrito.get(posicionProducto2).getIdProdu()) {
                         cantidad = listarCarrito.get(posicionProducto2).getCantidad() + cantidad;
-                        double subtotal = listarCarrito.get(posicionProducto2).getPrecioCompra() * cantidad;
+                        double subtotall = listarCarrito.get(posicionProducto2).getPrecioCompra() * cantidad;
                         listarCarrito.get(posicionProducto2).setCantidad(cantidad);
-                        listarCarrito.get(posicionProducto2).setSubtotal(subtotal);
+                        listarCarrito.get(posicionProducto2).setSubtotal(subtotall);
                     } else {
                         //variables del carrito
                         item = item + 1;
@@ -225,9 +227,9 @@ public class EjemploCarrito extends HttpServlet {
                     }
                     if (idproducto == listarCarrito.get(posicionProducto3).getIdProdu()) {
                         cantidad = listarCarrito.get(posicionProducto3).getCantidad() - cantidad;
-                        double subtotal = listarCarrito.get(posicionProducto3).getPrecioCompra() * cantidad;
+                        double subtotall = listarCarrito.get(posicionProducto3).getPrecioCompra() * cantidad;
                         listarCarrito.get(posicionProducto3).setCantidad(cantidad);
-                        listarCarrito.get(posicionProducto3).setSubtotal(subtotal);
+                        listarCarrito.get(posicionProducto3).setSubtotal(subtotall);
                     } else {
                         //variables del carrito
                         item = item + 1;
@@ -258,6 +260,7 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("contador", listarCarrito.size());
                 request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
                 break;
+                
             case "Delete":
                 int idPro = Integer.parseInt(request.getParameter("idP"));
                 //EL BUCLE VA A RECORRER TODALA LISTA DEL  CARRITO
@@ -275,8 +278,16 @@ public class EjemploCarrito extends HttpServlet {
                 HttpSession sesionCarrito = request.getSession();
                 sesionCarrito.setAttribute("carrito", listarCarrito);
                 for (int i = 0; i < listarCarrito.size(); i++) {
+                    subtotal = totalaPagar + listarCarrito.get(i).getSubtotal();;
                     totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
+                    if (listarCarrito.get(i).getItem() >= 2) {
+                        descuento = totalaPagar * 0.10;
+                        totalaPagar = totalaPagar - descuento;
+
+                    }
                 }
+                request.setAttribute("sub", subtotal);
+                request.setAttribute("desc", descuento);
                 request.setAttribute("monto", totalaPagar);
                 request.getRequestDispatcher("Carrito.jsp").forward(request, response);
 //                UsuarioVO u = new UsuarioVO();
@@ -287,8 +298,8 @@ public class EjemploCarrito extends HttpServlet {
 //
 //                }
                 break;
-                
-                case "CarritoPedido":
+
+            case "CarritoPedido":
                 totalaPagar = 0.0;
                 HttpSession sesionCarrito2 = request.getSession();
                 sesionCarrito2.setAttribute("carrito", listarCarrito);
@@ -307,30 +318,34 @@ public class EjemploCarrito extends HttpServlet {
                 break;
 
             case "GenerarPedido":
+                String fechaPedido = "";
                 HttpSession sesionPedido = request.getSession();
                 UsuarioVO veo = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
 
                 if (veo == null) {
-                    request.setAttribute("MensajeError", "Debes iniciar Sesion pra generar el pedido");
+                    request.setAttribute("MensajeError", "Debes iniciar Sesion para generar el pedido");
                 } else {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                    String fechaPedido = sdf.format(new Date());
+                    fechaPedido = sdf.format(new Date());
                     PedidoVO pediVO = new PedidoVO();
                     pediVO.setDestinoPedido("direccion");
                     List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
                     pediVO.setDetallePedido(listarCarrito);
                     pediVO.setFechaPedido(fechaPedido);
+                    String direccion= request.getParameter("direccionEnvio");
+                    pediVO.setDestinoPedido(direccion);
                     pediVO.setFechaEntrega("2022-08-23");
                     pediVO.setEstadoPedido("cANCELADO");
                     PedidoDAO pediDAO = new PedidoDAO();
-                    int res = pediDAO.GenerarCompra(pediVO);
+                    int res = pediDAO.GenerarCompra(pediVO, veo.getIdUsuario());
                     if (res != 0 && totalaPagar > 0) {
                         request.setAttribute("MensajeExito", "Se guardo con exito");
                     } else {
                         request.setAttribute("MensajeError", "NO Se guardo con exito");
                     }
                 }
-                request.getRequestDispatcher("Carrito.jsp").forward(request, response);
+                request.setAttribute("fechaPedido", fechaPedido);
+                request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
 
                 break;
             default:

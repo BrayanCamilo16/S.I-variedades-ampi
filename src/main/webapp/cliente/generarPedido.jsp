@@ -1,3 +1,14 @@
+<%@page import="vo.UsuarioVO"%>
+<%@page import="dao.UsuarioDAO"%>
+<%
+    UsuarioDAO usuarioDao = new UsuarioDAO();
+    HttpSession sesionPedido = request.getSession();
+    UsuarioVO usuarioVO = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
+    String idUsuario = String.valueOf(usuarioVO.getIdUsuario());
+
+%>
+
+
 <div class="modal fade" id="generarPedido">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
@@ -15,11 +26,12 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="pass">Dirección envio <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control mt-1" name="direccionEnvio" required>
+                        <input type="text" class="form-control mt-1" value="<%= usuarioDao.getAddresUser(idUsuario) %>" name="direccionEnvio" required>
                     </div>
                 </div>
 
                 <div class="modal-footer">
+                     <a href="factura.jsp"><button type="butoon" class="btn w-100 btn-lg btn-primary float-start" data-bs-toggle="modal">Generar factura</button></a>
                     <button type="submit" class="btn btn-primary">Generar pedido</button>
                 </div>
             </form>

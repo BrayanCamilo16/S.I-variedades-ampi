@@ -134,44 +134,70 @@ public class UsuarioDAO extends Conexion2 implements IUsuarioDAO {
         return listarUsuarios;
     }
 //principals
-
-//    public UsuarioVO leerUsuarioPorID(String usuId) {
-//        UsuarioVO usus = new UsuarioVO();
-//        sql = "select * from usuario where id_usuario = ?";
-//        try {
-//            conn = this.getConnection();
-//            stmt = conn.prepareStatement(sql);
-//            stmt.setString(1, usuId);
-//            rs = stmt.executeQuery();
-//            //esto reornara un boolean
-//            if (rs.next()) {
-//                usus.setIdUsuario(rs.getInt("id_usuario"));
-//                usus.setEmailUsuario(rs.getString("email_usuario"));
-//                usus.setPassUsuario(rs.getString("pass_usuario"));
-//                usus.setNombreUsuario(rs.getString("nombre_usuario"));
-//                usus.setApellidoUsuario(rs.getString("apellido_usuario"));
-//                usus.setNumDocumentoUsuario(rs.getString("num_documento_usuario"));
-//                usus.setTelefonoUsuario(rs.getString("telefono_usuario"));
-//                usus.setDireccionUsuario(rs.getString("direccion_usuario"));
-//                usus.setSexoUsuario(rs.getString("sexo_usuario"));
-//                usus.setEstadoUsuario(rs.getBoolean("estado_usuario"));
-//                usus.setIdRol(rs.getString("id_rol_FK"));
-//                usus.setTipoDocumento(rs.getString("id_tipo_doc_fk"));
-//            }
+    public UsuarioVO leerUsuarioPorID(String usuId) {
+        UsuarioVO usus = new UsuarioVO();
+        sql = "select * from usuario where id_usuario = ?";
+        try {
+            conn = this.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuId);
+            rs = stmt.executeQuery();
+            //esto reornara un boolean
+            if (rs.next()) {
+                usus.setIdUsuario(rs.getInt("id_usuario"));
+                usus.setEmailUsuario(rs.getString("email_usuario"));
+                usus.setPassUsuario(rs.getString("pass_usuario"));
+                usus.setNombreUsuario(rs.getString("nombre_usuario"));
+                usus.setApellidoUsuario(rs.getString("apellido_usuario"));
+                usus.setNumDocumentoUsuario(rs.getString("num_documento_usuario"));
+                usus.setTelefonoUsuario(rs.getString("telefono_usuario"));
+                usus.setDireccionUsuario(rs.getString("direccion_usuario"));
+                usus.setSexoUsuario(rs.getString("sexo_usuario"));
+                usus.setEstadoUsuario(rs.getBoolean("estado_usuario"));
+                usus.setIdRol(rs.getString("id_rol_FK"));
+                usus.setTipoDocumento(rs.getString("id_tipo_doc_fk"));
+            }
+            this.close();
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } //
+        finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return usus;
+    }
+    
+    public String getAddresUser(String usuId) {
+        String addresUser = "";
+        sql = "select direccion_usuario from usuario where id_usuario = ?";
+        try {
+            conn = this.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuId);
+            rs = stmt.executeQuery();
+            //esto reornara un boolean
+            if (rs.next()) {
+                addresUser= rs.getString(1);
+            }
 //            this.close();
-//        } catch (SQLException e) {
-//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-//        } //
-//        finally {
-//            try {
-//                this.close();
-//            } catch (Exception e) {
-//                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-//            }
-//        }
-//        return usus;
-//    }
-
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } //
+        finally {
+            try {
+                this.close();
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return addresUser;
+    }
+    
+    
     @Override
     public boolean update() {
         UsuarioVO usuario = null;

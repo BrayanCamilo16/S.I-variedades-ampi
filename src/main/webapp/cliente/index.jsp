@@ -28,22 +28,22 @@
 
                     </div>
 
-                    <div class="cajadd">
-                        <h1>Mis facturas</h1>
-                        <p class="con">Consulta todas tus facturas!</p>
-                        <i class="fas fa-solid fa-envelope-open-text hol"></i>
-                        <a href="facturas.jsp">
-                            <div class="masII">
-                                <span class="psnii">Mas Info<i class="fa-solid fa-circle-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
+                    <!--                    <div class="cajadd">
+                                            <h1>Mis facturas</h1>
+                                            <p class="con">Consulta todas tus facturas!</p>
+                                            <i class="fas fa-solid fa-envelope-open-text hol"></i>
+                                            <a href="facturas.jsp">
+                                                <div class="masII">
+                                                    <span class="psnii">Mas Info<i class="fa-solid fa-circle-arrow-right"></i></span>
+                                                </div>
+                                            </a>
+                                        </div>-->
                 </div>
             </div>
         </div>
 
-        <a aria-current="page" href="${pageContext.request.contextPath}/EjemploCarrito?accion=CarritoPedido"><div class="div_icono"><i class="fas fa-shopping-cart icono">(<label style="color: black">${contador}</label>)</i></div></a>
-
+        <a aria-current="page" href="${pageContext.request.contextPath}/EjemploCarrito?accion=CarritoPedido"><div class="carro-iconoo"><i class="fas fa-shopping-cart icono">(<label style="color: black">${contador}</label>)</i></div></a>
+        <br><br><br>
         <section>
             <h4 class="compras-cate">Compra por categor&#237;as</h4>
             <!-- categorias  -->

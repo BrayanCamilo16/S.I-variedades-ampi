@@ -1,5 +1,4 @@
 package web;
-
 import dao.PedidoDAO;
 import dao.ProductoDAO;
 import java.io.IOException;
@@ -318,7 +317,6 @@ public class EjemploCarrito extends HttpServlet {
                 break;
 
             case "GenerarPedido":
-                String fechaPedido = "";
                 HttpSession sesionPedido = request.getSession();
                 UsuarioVO veo = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
 
@@ -326,27 +324,26 @@ public class EjemploCarrito extends HttpServlet {
                     request.setAttribute("MensajeError", "Debes iniciar Sesion para generar el pedido");
                 } else {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                    fechaPedido = sdf.format(new Date());
+                    String fechaPedido = sdf.format(new Date());
                     PedidoVO pediVO = new PedidoVO();
                     pediVO.setDestinoPedido("direccion");
                     List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
                     pediVO.setDetallePedido(listarCarrito);
                     pediVO.setFechaPedido(fechaPedido);
-                    String direccion= request.getParameter("direccionEnvio");
+                    String direccion = request.getParameter("direccionEnvio");
                     pediVO.setDestinoPedido(direccion);
                     pediVO.setFechaEntrega("2022-08-23");
-                    pediVO.setEstadoPedido("cANCELADO");
+                    pediVO.setEstadoPedido("proceso");
                     PedidoDAO pediDAO = new PedidoDAO();
-                    int res = pediDAO.GenerarCompra(pediVO, veo.getIdUsuario());
+                    int res = pediDAO.GenerarCompra(pediVO);
                     if (res != 0 && totalaPagar > 0) {
                         request.setAttribute("MensajeExito", "Se guardo con exito");
+                         request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     } else {
                         request.setAttribute("MensajeError", "NO Se guardo con exito");
+                         request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     }
                 }
-                request.setAttribute("fechaPedido", fechaPedido);
-                request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
-
                 break;
             default:
                 request.setAttribute("productos", prodVo);

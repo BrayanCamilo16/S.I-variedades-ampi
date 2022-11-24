@@ -84,23 +84,21 @@ public class PedidoDAO {
         }
         return pedidos;
     }
-
-    public int GenerarCompra(PedidoVO pedi, int codigoCliente) {
+     public int GenerarCompra(PedidoVO pedi) {
         int id_pedido;
-        sql = "insert into pedido (fecha_pedido, fecha_entrega, destino_pedido, estado_pedido) VALUES (?,?,?,?)";
+        sql = "insert into pedido (fecha_pedido, fecha_entrega, destino_pedido, estado_pedido, ) VALUES (?,?,?,?)";
         try {
             // Se inserta el pedido
             conn = Conexion.getConnection();
 //            for (int i = 0; i < pedi.getDetallePedido().size(); i++) {
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, pedi.getFechaPedido());
-            stmt.setString(2, pedi.getFechaEntrega());
-            stmt.setString(3, pedi.getDestinoPedido());
-            stmt.setString(4, pedi.getEstadoPedido());
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, pedi.getFechaPedido());
+                stmt.setString(2, pedi.getFechaEntrega());
+                stmt.setString(3, pedi.getDestinoPedido());
+                stmt.setString(4, pedi.getEstadoPedido());
 //                pedi.setIdProducto(pedi.getDetallePedido().get(i).getIdProdu());
-//                System.out.println("IDPRODUCTO"+PEDI);
-            stmt.setInt(5, pedi.getIdProducto());
-            r = stmt.executeUpdate();
+//                System.out.println("IDPRODUCTO"+PEDI)
+                r = stmt.executeUpdate();
 //            }
 
             //ea para identificar la ultima compra
@@ -120,14 +118,6 @@ public class PedidoDAO {
                 stmt.setDouble(4, detalle.getCantidad());
                 r = stmt.executeUpdate();
             }
-
-            sql = "INSERT INTO usuario_pedido (id_pedido, id_usuario_cliente_fk) VALUES (?,?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id_pedido);
-            stmt.setInt(2, codigoCliente);
-            rs = stmt.executeQuery(sql);
-            id_pedido = rs.getInt("id_pedido");
-            rs.close();
 
         } catch (SQLException ex) {
             operacionExitosa = false;

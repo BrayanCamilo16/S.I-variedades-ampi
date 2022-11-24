@@ -16,26 +16,18 @@
                 <h3 class="modal-title fw-bold lead">Generar pedido</h3>
                 <button type="button" class="text-white bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
-            <form action="${pageContext.request.contextPath}/EjemploCarrito" method="POST" enctype="multipart/form-data">
+            <form  method="POST" action="${pageContext.request.contextPath}/EjemploCarrito?accion=GenerarPedido">
                 <div class="modal-body">
                     <div class="form-group mb-2">
-                        <label for="email">Forma pago <span class="text-danger">*</span></label><br><br>
-                        <span class="me-2">Efectivo</span><input type="radio" value="1" name="formaPago">
-                        <span class="me-2">Online</span><input type="radio" value="2" name="formaPago">
-                        <input type="hidden" name="opcion" value="5">
-                    </div>
-                    <div class="form-group mb-2">
                         <label for="pass">Dirección envio <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control mt-1" value="<%= usuarioDao.getAddresUser(idUsuario) %>" name="direccionEnvio" required>
+                        <input type="text"  name="direccionEnvio" >
                     </div>
+                <div class="modal-footer">
+                
+                    <button type="submit">Generar pedido</button> 
+                         
                 </div>
 
-                <div class="modal-footer">
-               
-                     <a href="factura.jsp"><button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#generarP">Generar pedido</button></a>
-                     
-                     
-                </div>
             </form>
         </div>
     </div>

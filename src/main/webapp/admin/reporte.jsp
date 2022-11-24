@@ -16,9 +16,11 @@
         
          <buttom class=" btn btn-primary text-white p100 mb100 my100 " data-bs-toggle="modal" data-bs-target="#registrarProducto"><i class="fas fa-plus-circle me-1"></i>
              
-             <a style="color:white; text-decoration: none" href="vistas.jsp">Generar reporte general</a></buttom>
+             <a style="color:white; text-decoration: none" href="General.jsp">Generar reporte general</a></buttom>
          <buttom class=" btn btn-primary text-white p100 mb100 my100 " data-bs-toggle="modal" data-bs-target="#registrarProducto"><i class="fas fa-plus-circle me-1"></i> 
-             <a style="color:white; text-decoration: none" href="vista2.jsp">Reporte por fecha</a></buttom>
+             <a style="color:white; text-decoration: none" href="Fecha.jsp">Reporte por fecha</a></buttom>
+ <buttom class=" btn btn-primary text-white p100 mb100 my100 " data-bs-toggle="modal" data-bs-target="#registrarProducto"><i class="fas fa-plus-circle me-1"></i>
+             <a style="color:white; text-decoration: none" href="repro.jsp">Generar reporte productos sin stock</a></buttom>
         <!-- footer  -->
         <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->

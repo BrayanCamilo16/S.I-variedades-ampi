@@ -27,6 +27,24 @@
                         </a>
 
                     </div>
+     <% 
+if (request.getAttribute("mensajeError")!=null ) {%>
+  ${mensajeError}     
+
+
+
+
+   <% } else {%>
+   ${mensajeExito} 
+    
+   
+
+
+   
+  
+   
+   
+   <%}%>
 
                     <!--                    <div class="cajadd">
                                             <h1>Mis facturas</h1>

@@ -16,7 +16,7 @@
                 <h3 class="modal-title fw-bold lead">Generar pedido</h3>
                 <button type="button" class="text-white bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
-            <form action="${pageContext.request.contextPath}/Producto" method="POST" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/EjemploCarrito" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group mb-2">
                         <label for="email">Forma pago <span class="text-danger">*</span></label><br><br>
@@ -31,8 +31,10 @@
                 </div>
 
                 <div class="modal-footer">
-                     <a href="factura.jsp"><button type="butoon" class="btn w-100 btn-lg btn-primary float-start" data-bs-toggle="modal">Generar factura</button></a>
-                    <button type="submit" class="btn btn-primary">Generar pedido</button>
+               
+                     <a href="factura.jsp"><button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#generarP">Generar pedido</button></a>
+                     
+                     
                 </div>
             </form>
         </div>

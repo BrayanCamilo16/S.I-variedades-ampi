@@ -118,10 +118,6 @@
 				<textFieldExpression><![CDATA[$F{pedido}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="149" y="0" width="68" height="49" uuid="80fff7a4-be7f-463d-89d7-2798ec26c63a"/>
-				<textFieldExpression><![CDATA[$F{entrega}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="232" y="0" width="75" height="20" uuid="8ab9456a-a7eb-4bfe-aaac-de2f8d0e2e8a"/>
 				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
 			</textField>

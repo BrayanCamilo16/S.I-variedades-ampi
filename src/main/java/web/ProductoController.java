@@ -221,7 +221,9 @@ public class ProductoController extends HttpServlet {
         request.setAttribute("mensajeDescriptivo", descripcionError);
         request.getRequestDispatcher(direccion).forward(request, response);
     }
-
+    
+    
+    //todo este caso esta mal porque lo modifique
     private void registrarProducto(HttpServletRequest request, HttpServletResponse response, List<ProductoVO> productosEnElCarrito, String direccion) throws ServletException, IOException {
         PedidoVO pedidoVo = new PedidoVO("22/08/13", "22/08/13", direccion, "Pendiente");
         DetallesPedidoVO detallesPedidoVO = null;
@@ -236,11 +238,10 @@ public class ProductoController extends HttpServlet {
         int idUsuarioCliente = usuarioVo.getIdUsuario();
 
         for (ProductoVO productoVo : productosEnElCarrito) {
-            int idPedido = pedidoDao.insert(pedidoVo);
-            if (idPedido > 0) {
-                detallesPedidoVO = new DetallesPedidoVO(String.valueOf(idPedido), String.valueOf(productoVo.getIdProducto()), productoVo.getPrecioUnitarioProducto(), productoVo.getCantidad());
+            if (idUsuarioCliente > 0) {
+                detallesPedidoVO = new DetallesPedidoVO(String.valueOf(idUsuarioCliente), String.valueOf(productoVo.getIdProducto()), productoVo.getPrecioUnitarioProducto(), productoVo.getCantidad());
                 if (detallesPedidoDAO.insert(detallesPedidoVO)) {
-                    usuarioPedidoVo = new UsuarioPedidoVO(0, idPedido, idUsuarioCliente, 1);
+                    usuarioPedidoVo = new UsuarioPedidoVO(0, idUsuarioCliente, idUsuarioCliente, 1);
                     if (usuarioPedidoDAO.insert(usuarioPedidoVo)) {
                         request.setAttribute("tituloExito", "Pedido hecho");
                         request.setAttribute("mensajeDescriptivo", "El pedido se realizó correctamente, pronto estará listo");

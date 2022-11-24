@@ -41,7 +41,13 @@
                 </div>
             </div>
         </div>
-
+        <%//cuando es diferente a nulo es que si hubo un error
+    //este es el mensaje de activar e inactivar
+    if (request.getAttribute("MensajeError") != null) {%>
+        ${MensajeError}
+        <%} else {%>
+        ${MensajeExito}
+        <%}%>
         <a aria-current="page" href="${pageContext.request.contextPath}/EjemploCarrito?accion=CarritoPedido"><div class="carro-iconoo"><i class="fas fa-shopping-cart icono">(<label style="color: black">${contador}</label>)</i></div></a>
         <br><br><br>
         <section>

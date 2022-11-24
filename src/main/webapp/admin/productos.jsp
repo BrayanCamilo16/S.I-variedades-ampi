@@ -11,7 +11,7 @@
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../js/EstadoProducto.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/EstadoProducto.js" type="text/javascript"></script>
     </head>
     <body>
 

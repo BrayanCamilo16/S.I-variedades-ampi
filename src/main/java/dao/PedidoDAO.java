@@ -19,39 +19,9 @@ public class PedidoDAO {
     private String sql = "";
     boolean operacionExitosa = false;
 
-    // Este metodo inserta un pedido y retorna el id de ese pedido
-    public int insert(PedidoVO pedidoVo) {
-        int idPedido = 0;
-
-        sql = "INSERT INTO pedido (fecha_pedido, fecha_entrega, destino_pedido, estado_pedido) VALUES (?,?,?,?)";
-        try {
-            // Se inserta el pedido
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, pedidoVo.getFechaPedido());
-            stmt.setString(2, pedidoVo.getFechaEntrega());
-            stmt.setString(3, pedidoVo.getDestinoPedido());
-            stmt.setString(4, pedidoVo.getEstadoPedido());
-            r = stmt.executeUpdate();
-
-            // Se consulta el ultimo pedido insertado
-            sql = "SELECT id_pedido FROM pedido ORDER BY id_pedido DESC LIMIT 1";
-            stmt = conn.prepareStatement(sql);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                idPedido = rs.getInt(1);
-            }
-
-        } catch (SQLException ex) {
-            operacionExitosa = false;
-            System.out.println("Error al insertar el producto: " + ex.toString());
-            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-        return idPedido;
+    public PedidoDAO() {
+    }
+    public PedidoDAO(PedidoVO vo) {
     }
 
     // Este metodo devuelve los VO de pedido
@@ -99,10 +69,8 @@ public class PedidoDAO {
             stmt.setString(4, pedi.getEstadoPedido());
 //                pedi.setIdProducto(pedi.getDetallePedido().get(i).getIdProdu());
 //                System.out.println("IDPRODUCTO"+PEDI);
-            stmt.setInt(5, pedi.getIdProducto());
             r = stmt.executeUpdate();
 //            }
-
             //ea para identificar la ultima compra
             sql = "SELECT id_pedido from pedido ORDER by id_pedido DESC LIMIT 1";
             rs = stmt.executeQuery(sql);
@@ -110,6 +78,12 @@ public class PedidoDAO {
             id_pedido = rs.getInt("id_pedido");
             rs.close();
 
+//            sql = "INSERT INTO usuario_pedido (id_pedido_fk, id_usuario_cliente_FK) VALUES (?,?)";
+//            stmt = conn.prepareStatement(sql);
+//            id_pedido = rs.getInt("id_pedido");
+//            stmt.setInt(1, id_pedido);
+//            stmt.setInt(2, codigoCliente);
+//            r = stmt.executeUpdate();
             for (CarritoVO detalle : pedi.getDetallePedido()) {
                 System.out.println("detalle = " + detalle);
                 sql = "INSERT INTO detalles_pedido (id_pedido, id_producto, precio_unidad, cantidad) VALUES (?,?,?,?)";
@@ -121,17 +95,17 @@ public class PedidoDAO {
                 r = stmt.executeUpdate();
             }
 
-            sql = "INSERT INTO usuario_pedido (id_pedido, id_usuario_cliente_fk) VALUES (?,?)";
+            sql = "INSERT INTO usuario_pedido (INSERT INTO usuario_pedido (id_pedido_fk, id_usuario_cliente_FK) VALUES (?,?)";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id_pedido);
             stmt.setInt(2, codigoCliente);
-            rs = stmt.executeQuery(sql);
+            r = stmt.executeUpdate(sql);
             id_pedido = rs.getInt("id_pedido");
             rs.close();
 
         } catch (SQLException ex) {
             operacionExitosa = false;
-            System.out.println("Error al consultar los pedidos: " + ex.toString());
+            System.out.println("Error al insertar los productos: " + ex.toString());
             Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexion.close(stmt);
@@ -144,7 +118,7 @@ public class PedidoDAO {
         ArrayList<PedidoVO> listarPedidos = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
-            sql = "SELECT * FROM pedido";
+            sql = "SELECT * FROM pedido ORDER BY id_pedido DESC";
             stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
 
@@ -163,5 +137,25 @@ public class PedidoDAO {
         }
 
         return listarPedidos;
+    }
+
+    public boolean EnProceso(int idPedido) {
+        try {
+            sql = "update pedido set estado_pedido='En Proceso'  where id_pedido=?";
+            conn = Conexion.getConnection();
+            //crear el puente, prepara lo que va a mandar
+            stmt = conn.prepareStatement(sql);
+            //por el puente manda los datos a eliminar, estos van en orden a la base de datos
+            stmt.setInt(1, idPedido);
+            stmt.executeUpdate();
+            operacionExitosa = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+        return operacionExitosa;
     }
 }

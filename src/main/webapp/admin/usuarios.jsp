@@ -9,7 +9,7 @@
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../js/EstadosUsuario.js"></script>
+        <script src="${pageContext.request.contextPath}/js/EstadosUsuario.js"></script>
     </head>
     <body>
         <jsp:include page="../WEB-INF/paginas/comunes/navbar-enlaces.jsp" />

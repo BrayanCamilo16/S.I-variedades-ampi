@@ -87,7 +87,7 @@
                 <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/reporte.jsp" class="enlacesss">Reportes<i class="fas fa-solid fa-envelope-open-text"></i></a>
             </li>
             <li class="listass-enlacess">
-                <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/verPedidos.jsp" class="enlacesss">Reportes<i class="fas fa-solid fa-envelope-open-text"></i></a>
+                <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/verPedidos.jsp" class="enlacesss">Pedidos<i class="fas fa-solid fa-envelope-open-text"></i></a>
             </li>
             <!--                <li>
                                 <button class="nav-link btn btn-transparent text-dark mx-2"><i

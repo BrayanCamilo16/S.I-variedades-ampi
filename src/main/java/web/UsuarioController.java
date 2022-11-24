@@ -39,7 +39,7 @@ public class UsuarioController extends HttpServlet {
         String action = request.getParameter("action");
         UsuarioVO UsuVO = new UsuarioVO(Integer.parseInt(codigoId), Boolean.valueOf(action));
         UsuarioDAO UsuaDAO = new UsuarioDAO(UsuVO);
-        if (request.getParameter("action").equals("true")) {
+        if (action.equals("true")) {
             if (UsuaDAO.Inactivar()) {
                 String redirigirA = "";
                 request.setAttribute("titleexito", "Usuario Inactivado Correctamente");

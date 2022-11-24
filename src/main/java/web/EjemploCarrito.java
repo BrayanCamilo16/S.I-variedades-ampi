@@ -326,34 +326,36 @@ public class EjemploCarrito extends HttpServlet {
                 break;
 
             case "GenerarPedido":
-                String fechaPedido = "";
                 HttpSession sesionPedido = request.getSession();
                 UsuarioVO veo = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
-
                 if (veo == null) {
                     request.setAttribute("MensajeError", "Debes iniciar Sesion para generar el pedido");
+                    request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
                 } else {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                    fechaPedido = sdf.format(new Date());
+                    String direccion = veo.getDireccionUsuario();
                     PedidoVO pediVO = new PedidoVO();
                     pediVO.setDestinoPedido("direccion");
                     List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
                     pediVO.setDetallePedido(listarCarrito);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String fechaPedido = sdf.format(new Date());
                     pediVO.setFechaPedido(fechaPedido);
-                    String direccion = request.getParameter("direccionEnvio");
+//                    String fechaEntrega = request.getParameter("fechaE");
+                    pediVO.setFechaEntrega("2022-12-12");
                     pediVO.setDestinoPedido(direccion);
-                    pediVO.setFechaEntrega("2022-08-23");
-                    pediVO.setEstadoPedido("cANCELADO");
+                    pediVO.setEstadoPedido("En Proceso");
                     PedidoDAO pediDAO = new PedidoDAO();
                     int res = pediDAO.GenerarCompra(pediVO, veo.getIdUsuario());
                     if (res != 0 && totalaPagar > 0) {
-                        request.setAttribute("MensajeExito", "Se guardo con exito");
+                        request.setAttribute("MensajeExito", "Tu pedido se guardo con exito!");
+                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     } else {
-                        request.setAttribute("MensajeError", "NO Se guardo con exito");
+                        request.setAttribute("MensajeError", "Tu pedido NO Se guardo con exito");
+                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     }
+//                    request.setAttribute("fechaPedido", fechaPedido);
+//                    request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
                 }
-                request.setAttribute("fechaPedido", fechaPedido);
-                request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
 
                 break;
             default:
@@ -374,7 +376,20 @@ public class EjemploCarrito extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int codigoId = Integer.parseInt(request.getParameter("codigoId"));
+        String action = request.getParameter("action");
+        
+        PedidoVO VO = new PedidoVO(codigoId, action);
+        PedidoDAO DAO = new PedidoDAO(VO);
+        if (action.equals("En Proceso")) {
+            if (DAO.EnProceso(codigoId)) {
+                request.setAttribute("titleexito", "El pedido se actualizo correctamente");
+                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
+            } else {
+                request.setAttribute("titleerror", "El pedido No se actualizo correctamente");
+                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
+            }
+        }
     }
 
     /**

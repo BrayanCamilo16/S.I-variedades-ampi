@@ -1,5 +1,4 @@
 <%@page import="vo.UsuarioVO" %>
-<jsp:include page="head-css.jsp" />
 <header class="headerr-usuarios">
     <div class="logo">
         <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/variedades-ampi.png" alt=""></a>
@@ -26,7 +25,7 @@
                 <a aria-current="page" href="${pageContext.request.contextPath}/admin/usuarios.jsp" class="enlacesss">Usuarios<i class="fas fa-solid fa-users"></i></a>
             </li>
             <li class="listass-enlacess">
-                <a aria-current="page" href="" class="enlacesss">Mis pedidos <i class="fas fa-solid fa-cart-arrow-down"></i></a>
+                <a aria-current="page" href="${pageContext.request.contextPath}/admin/verPedidos.jsp" class="enlacesss">Ver pedidos <i class="fas fa-solid fa-cart-arrow-down"></i></a>
             </li>
             <li class="listass-enlacess">
                 <a aria-current="page" href="${pageContext.request.contextPath}/admin/categorias.jsp" class="enlacesss">Categorias<i class="fas fa-solid fa-cookie"></i></a>
@@ -86,6 +85,9 @@
             </li>  
             <li class="listass-enlacess">
                 <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/reporte.jsp" class="enlacesss">Reportes<i class="fas fa-solid fa-envelope-open-text"></i></a>
+            </li>
+            <li class="listass-enlacess">
+                <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/verPedidos.jsp" class="enlacesss">Reportes<i class="fas fa-solid fa-envelope-open-text"></i></a>
             </li>
             <!--                <li>
                                 <button class="nav-link btn btn-transparent text-dark mx-2"><i

@@ -259,7 +259,7 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("contador", listarCarrito.size());
                 request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
                 break;
-                
+
             case "Delete":
                 int idPro = Integer.parseInt(request.getParameter("idP"));
                 //EL BUCLE VA A RECORRER TODALA LISTA DEL  CARRITO
@@ -303,8 +303,16 @@ public class EjemploCarrito extends HttpServlet {
                 HttpSession sesionCarrito2 = request.getSession();
                 sesionCarrito2.setAttribute("carrito", listarCarrito);
                 for (int i = 0; i < listarCarrito.size(); i++) {
+                    subtotal = totalaPagar + listarCarrito.get(i).getSubtotal();;
                     totalaPagar = totalaPagar + listarCarrito.get(i).getSubtotal();
+                    if (listarCarrito.get(i).getItem() >= 2) {
+                        descuento = totalaPagar * 0.10;
+                        totalaPagar = totalaPagar - descuento;
+
+                    }
                 }
+                request.setAttribute("sub", subtotal);
+                request.setAttribute("desc", descuento);
                 request.setAttribute("monto", totalaPagar);
                 request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
 //                UsuarioVO u = new UsuarioVO();

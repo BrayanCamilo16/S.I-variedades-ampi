@@ -14,6 +14,14 @@ public class PedidoVO {
     public PedidoVO() {
     }
 
+    public PedidoVO(int idPedido, String fechaPedido, String fechaEntrega, String destinoPedido, String estadoPedido) {
+        this.idPedido = idPedido;
+        this.fechaPedido = fechaPedido;
+        this.fechaEntrega = fechaEntrega;
+        this.destinoPedido = destinoPedido;
+        this.estadoPedido = estadoPedido;
+    }
+
     public PedidoVO(String fechaPedido, String fechaEntrega, String destinoPedido, String estadoPedido) {
         this.fechaPedido = fechaPedido;
         this.fechaEntrega = fechaEntrega;

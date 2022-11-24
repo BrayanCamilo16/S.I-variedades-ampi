@@ -130,4 +130,28 @@ public class PedidoDAO {
         return r;
     }
 
+    public ArrayList<PedidoVO> listarP() {
+        ArrayList<PedidoVO> listarPedidos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            sql = "SELECT * FROM pedido";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                PedidoVO pedi = new PedidoVO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                listarPedidos.add(pedi);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+
+        return listarPedidos;
+    }
 }

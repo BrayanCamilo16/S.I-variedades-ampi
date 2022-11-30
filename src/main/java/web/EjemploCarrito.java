@@ -1,5 +1,4 @@
 package web;
-
 import dao.PedidoDAO;
 import dao.ProductoDAO;
 import java.io.IOException;
@@ -341,9 +340,9 @@ public class EjemploCarrito extends HttpServlet {
                     String fechaPedido = sdf.format(new Date());
                     pediVO.setFechaPedido(fechaPedido);
 //                    String fechaEntrega = request.getParameter("fechaE");
-                    pediVO.setFechaEntrega("2022-12-12");
                     pediVO.setDestinoPedido(direccion);
                     pediVO.setEstadoPedido("En Proceso");
+                    pediVO.setFechaEntrega("2022-08-23");   
                     PedidoDAO pediDAO = new PedidoDAO();
                     int res = pediDAO.GenerarCompra(pediVO, veo.getIdUsuario());
                     if (res != 0 && totalaPagar > 0) {
@@ -356,7 +355,6 @@ public class EjemploCarrito extends HttpServlet {
 //                    request.setAttribute("fechaPedido", fechaPedido);
 //                    request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
                 }
-
                 break;
             default:
                 request.setAttribute("productos", prodVo);
@@ -376,20 +374,21 @@ public class EjemploCarrito extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int codigoId = Integer.parseInt(request.getParameter("codigoId"));
-        String action = request.getParameter("action");
-        
-        PedidoVO VO = new PedidoVO(codigoId, action);
-        PedidoDAO DAO = new PedidoDAO(VO);
-        if (action.equals("En Proceso")) {
-            if (DAO.EnProceso(codigoId)) {
-                request.setAttribute("titleexito", "El pedido se actualizo correctamente");
-                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
-            } else {
-                request.setAttribute("titleerror", "El pedido No se actualizo correctamente");
-                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
-            }
-        }
+        processRequest(request, response);
+//        int codigoId = Integer.parseInt(request.getParameter("codigoId"));
+//        String action = request.getParameter("action");
+//        
+//        PedidoVO VO = new PedidoVO(codigoId, action);
+//        PedidoDAO DAO = new PedidoDAO(VO);
+//        if (action.equals("En Proceso")) {
+//            if (DAO.EnProceso(codigoId)) {
+//                request.setAttribute("titleexito", "El pedido se actualizo correctamente");
+//                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
+//            } else {
+//                request.setAttribute("titleerror", "El pedido No se actualizo correctamente");
+//                request.getRequestDispatcher("admin/verPedidos.jsp").forward(request, response);
+//            }
+//        }
     }
 
     /**

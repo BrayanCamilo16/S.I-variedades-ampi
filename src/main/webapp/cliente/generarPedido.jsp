@@ -5,8 +5,6 @@
     HttpSession sesionPedido = request.getSession();
     UsuarioVO usuarioVO = (UsuarioVO) sesionPedido.getAttribute("usuarioVo");
 %>
-
-
 <div class="modal fade" id="generarPedido">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
@@ -22,17 +20,15 @@
 
                         <label for="pass">Dirección envio <span class="text-danger">*</span></label>
                         <input type="text" class="form-control mt-1" value="<%=usuarioVO.getDireccionUsuario()%>" required>
+
                     </div>
-                </div>
-
                 <div class="modal-footer">
-
-                    <!--                    <a href="factura.jsp">-->
-                    <button type="submit">Generar pedido</button>
-                    <!--                </a>-->
-
+                
+                    <button type="submit">Generar pedido</button> 
+                         
                 </div>
             </form>
+        </div>
         </div>
     </div>
 </div>

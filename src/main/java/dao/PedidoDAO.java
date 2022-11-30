@@ -57,27 +57,19 @@ public class PedidoDAO {
     }
     public int GenerarCompra(PedidoVO pedi, int codigoCliente) {
         int id_pedido;
-        sql = "insert into pedido (fecha_pedido, fecha_entrega, destino_pedido, estado_pedido, ) VALUES (?,?,?,?)";
+        sql = "insert into pedido (fecha_pedido, fecha_entrega, destino_pedido, estado_pedido) VALUES (now(),?,?,?)";
         try {
-            // Se inserta el pedido
             conn = Conexion.getConnection();
-//            for (int i = 0; i < pedi.getDetallePedido().size(); i++) {
                 stmt = conn.prepareStatement(sql);
-                stmt.setString(1, pedi.getFechaPedido());
-                stmt.setString(2, pedi.getFechaEntrega());
-                stmt.setString(3, pedi.getDestinoPedido());
-                stmt.setString(4, pedi.getEstadoPedido());
-//                pedi.setIdProducto(pedi.getDetallePedido().get(i).getIdProdu());
-//                System.out.println("IDPRODUCTO"+PEDI)
+                stmt.setString(1, pedi.getFechaEntrega());
+                stmt.setString(2, pedi.getDestinoPedido());
+                stmt.setString(3, pedi.getEstadoPedido());
                 r = stmt.executeUpdate();
-//            }
 
-            //ea para identificar la ultima compra
             sql = "SELECT id_pedido from pedido ORDER by id_pedido DESC LIMIT 1";
             rs = stmt.executeQuery(sql);
             rs.next();
             id_pedido = rs.getInt("id_pedido");
-            rs.close();
 
             for (CarritoVO detalle : pedi.getDetallePedido()) {
                 System.out.println("detalle = " + detalle);
@@ -89,14 +81,11 @@ public class PedidoDAO {
                 stmt.setDouble(4, detalle.getCantidad());
                 r = stmt.executeUpdate();
             }
-            
-            sql = "INSERT INTO usuario_pedido (INSERT INTO usuario_pedido (id_pedido_fk, id_usuario_cliente_FK) VALUES (?,?)";
+            sql = "INSERT INTO `usuario_pedido`(`id_usuario_pedido`, `id_pedido_fk`, `id_usuario_cliente_FK`) VALUES (NULL,?,?)";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id_pedido);
             stmt.setInt(2, codigoCliente);
-            r= stmt.executeUpdate(sql);
-//            id_pedido = rs.getInt("id_pedido");
-            rs.close();
+            r= stmt.executeUpdate();
 
         } catch (SQLException ex) {
             operacionExitosa = false;

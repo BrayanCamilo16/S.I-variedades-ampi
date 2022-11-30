@@ -1,22 +1,12 @@
 package web;
-import dao.PedidoDAO;
-import dao.ProductoDAO;
+import dao.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vo.CarritoVO;
-import vo.PedidoVO;
-import vo.ProductoVO;
-import vo.UsuarioVO;
+import javax.servlet.http.*;
+import vo.*;
 
 /**
  *
@@ -52,8 +42,8 @@ public class EjemploCarrito extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
-        prodVo = produDao.select();
-        System.out.println(prodVo);
+//        prodVo = produDao.select();
+//        System.out.println(prodVo);
         switch (accion) {
             case "Comprar":
                 totalaPagar = 0.0;
@@ -289,13 +279,6 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("desc", descuento);
                 request.setAttribute("monto", totalaPagar);
                 request.getRequestDispatcher("Carrito.jsp").forward(request, response);
-//                UsuarioVO u = new UsuarioVO();
-//                if (!u.getIdRol().equals("1") && !u.getIdRol().equals("2") && !u.getIdRol().equals("3")) {
-//                    request.getRequestDispatcher("Carrito.jsp").forward(request, response);
-//                } else {
-//                    request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
-//
-//                }
                 break;
 
             case "CarritoPedido":
@@ -315,13 +298,6 @@ public class EjemploCarrito extends HttpServlet {
                 request.setAttribute("desc", descuento);
                 request.setAttribute("monto", totalaPagar);
                 request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
-//                UsuarioVO u = new UsuarioVO();
-//                if (!u.getIdRol().equals("1") && !u.getIdRol().equals("2") && !u.getIdRol().equals("3")) {
-//                    request.getRequestDispatcher("Carrito.jsp").forward(request, response);
-//                } else {
-//                    request.getRequestDispatcher("cliente/Carrito.jsp").forward(request, response);
-//
-//                }
                 break;
 
             case "GenerarPedido":
@@ -331,7 +307,7 @@ public class EjemploCarrito extends HttpServlet {
                     request.setAttribute("MensajeError", "Debes iniciar Sesion para generar el pedido");
                     request.getRequestDispatcher("EjemploCarrito?accion=Carrito").forward(request, response);
                 } else {
-                    String direccion = veo.getDireccionUsuario();
+                    String direccion = request.getParameter("direcionCliente") == null ? veo.getDireccionUsuario() : request.getParameter("direcionCliente") ;
                     PedidoVO pediVO = new PedidoVO();
                     pediVO.setDestinoPedido("direccion");
                     List<CarritoVO> listarCarrito = (List<CarritoVO>) sesionPedido.getAttribute("carrito");
@@ -339,7 +315,6 @@ public class EjemploCarrito extends HttpServlet {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String fechaPedido = sdf.format(new Date());
                     pediVO.setFechaPedido(fechaPedido);
-//                    String fechaEntrega = request.getParameter("fechaE");
                     pediVO.setDestinoPedido(direccion);
                     pediVO.setEstadoPedido("En Proceso");
                     pediVO.setFechaEntrega("2022-08-23");   
@@ -352,8 +327,6 @@ public class EjemploCarrito extends HttpServlet {
                         request.setAttribute("MensajeError", "Tu pedido NO Se guardo con exito");
                         request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     }
-//                    request.setAttribute("fechaPedido", fechaPedido);
-//                    request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
                 }
                 break;
             default:

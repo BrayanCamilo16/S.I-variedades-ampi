@@ -16,7 +16,7 @@ sesionPedido = request.getSession(); UsuarioVO usuarioVO = (UsuarioVO) sesionPed
 						<input type="date" class="form-control mt-1" name="fechaE" required />
 						<input type="hidden" name="accion" value="GenerarPedido" />
 
-						<label for="pass">Direcci�n envio <span class="text-danger">*</span></label>
+						<label for="pass">Direccion envio <span class="text-danger">*</span></label>
 						<input
 							type="text"
 							class="form-control mt-1"
@@ -25,8 +25,8 @@ sesionPedido = request.getSession(); UsuarioVO usuarioVO = (UsuarioVO) sesionPed
 							required />
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="submit">Generar pedido</button>
+				<div class="modal-footer hola">
+                                    <button type="submit" class="gg">Generar Pedido</button>
 				</div>
 			</form>
 		</div>

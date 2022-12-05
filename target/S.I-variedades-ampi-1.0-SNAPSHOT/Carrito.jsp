@@ -6,6 +6,8 @@
     <head>
         <jsp:include page="WEB-INF/paginas/comunes/head-bootstrap.jsp" />
         <jsp:include page="WEB-INF/paginas/comunes/head-css.jsp" />
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script src="js/EliminarProductoCarrito.js" type="text/javascript"></script>
     </head>
     <body>
@@ -75,11 +77,23 @@
             </div>
         </div>
         <%//cuando es diferente a nulo es que si hubo un error
-            //este es el mensaje de activar e inactivar
             if (request.getAttribute("MensajeError") != null) {%>
-        ${MensajeError}
-        <%} else {%>
-        ${MensajeExito}
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                html:'${MensajeError}',
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
+        <%} else if (request.getAttribute("MensajeExito") != null) {%>
+        <script>
+            Swal.fire({
+                html:'${MensajeExito}',
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
         <%}%>
         <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->

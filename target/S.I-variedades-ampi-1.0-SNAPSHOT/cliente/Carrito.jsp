@@ -71,20 +71,12 @@
                             <input type="text" value="$${monto}" readonly="">
                         </div>
                         <div class="tarjetaf">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#generarPedido" class="buty">Realizar Pago<i class="fa-solid fa-dollar-sign"></i></button>
-<!--                            <a href="${pageContext.request.contextPath}/EjemploCarrito?accion=GenerarPedido">Generar Pedido<i class="fa-solid fa-dollar-sign"></i></a>-->
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#generarPedido" class="buty">Realizar Pago<i class="fa-solid fa-dollar-sign"></i></button><br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <%//cuando es diferente a nulo es que si hubo un error
-            //este es el mensaje de activar e inactivar
-            if (request.getAttribute("MensajeError") != null) {%>
-        ${MensajeError}
-        <%} else {%>
-        ${MensajeExito}
-        <%}%>
         <!-- footer  -->
         <jsp:include page="/WEB-INF/paginas/comunes/footer.jsp" />
         <!-- /footer  -->

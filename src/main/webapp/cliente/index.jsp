@@ -5,6 +5,7 @@
     <head>
         <jsp:include page="../WEB-INF/paginas/comunes/head-css.jsp" />
         <jsp:include page="../WEB-INF/paginas/comunes/head-bootstrap.jsp" />
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
 
@@ -42,11 +43,23 @@
             </div>
         </div>
         <%//cuando es diferente a nulo es que si hubo un error
-    //este es el mensaje de activar e inactivar
-    if (request.getAttribute("MensajeError") != null) {%>
-        ${MensajeError}
-        <%} else {%>
-        ${MensajeExito}
+            if (request.getAttribute("MensajeError") != null) {%>
+        <script>
+            Swal.fire({
+                html:'${MensajeError}',
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
+        <%} else if (request.getAttribute("MensajeExito") != null) {%>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                html:'${MensajeExito}',
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
         <%}%>
         <a aria-current="page" href="${pageContext.request.contextPath}/EjemploCarrito?accion=CarritoPedido"><div class="carro-iconoo"><i class="fas fa-shopping-cart icono">(<label style="color: black">${contador}</label>)</i></div></a>
         <br><br><br>

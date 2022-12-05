@@ -322,11 +322,11 @@ public class EjemploCarrito extends HttpServlet {
                     int res = pediDAO.GenerarCompra(pediVO, veo.getIdUsuario());
                     if (res != 0 && totalaPagar > 0) {
                         request.setAttribute("MensajeExito", "Tu pedido se guardo con exito!");
-                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     } else {
                         request.setAttribute("MensajeError", "Tu pedido NO Se guardo con exito");
-                        request.getRequestDispatcher("cliente/index.jsp").forward(request, response);
                     }
+                    request.setAttribute("fechaPedido", fechaPedido);
+                    request.getRequestDispatcher("cliente/factura.jsp").forward(request, response);
                 }
                 break;
             default:

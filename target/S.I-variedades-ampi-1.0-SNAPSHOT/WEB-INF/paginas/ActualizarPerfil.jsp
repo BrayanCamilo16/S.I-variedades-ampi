@@ -77,12 +77,12 @@
                                     <option <%=VO.getIdRol().equals("3") ? "selected" : " "%> value="3">Cliente</option>
                                 </select>
                             </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="submit" class="registro-us">Actualizar Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <input type="hidden" value="3" name="action">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="submit" class="registro-us">Actualizar Perfil<i class="fa-solid fa-pen-to-square"></i></button>
-                    <input type="hidden" value="3" name="action">
                 </div>
             </form>
         </div>

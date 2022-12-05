@@ -4,7 +4,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:include page="head-css.jsp" />
     </head>
     <body>
         <% HttpSession sesion = request.getSession();
@@ -39,7 +38,7 @@
                             <h2>${usuarioVo.emailUsuario}</h2>
                             <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                 <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <button type="submit" class="CerrarSesion" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                 <input type="hidden" name="action" value="4">
                             </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">
@@ -69,7 +68,7 @@
                             <h2>${usuarioVo.emailUsuario}</h2>
                             <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                 <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <button type="submit" class="CerrarSesion" data-bs-toggle="modal" data-bs-target="#perfil" class="CerrarSesion">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                 <input type="hidden" name="action" value="4">
                             </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">
@@ -99,7 +98,7 @@
                             <h2>${usuarioVo.emailUsuario}</h2>
                             <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                 <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                <button type="submit" class="CerrarSesion" data-bs-toggle="modal" data-bs-target="#perfil" class="CerrarSesion">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                 <input type="hidden" name="action" value="4">
                             </form>
                             <form method="post" action="${pageContext.request.contextPath}/Sesiones">

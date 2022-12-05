@@ -109,7 +109,7 @@
     font-size: 15px;
     letter-spacing: 0.5px;
 }
-.contenidoo form input{
+.contenidoo form .CerrarSesion{
     font-size: 18px;
     position: relative;
     font-family: 'Lobster', cursive;
@@ -122,7 +122,7 @@
     border: #0066FF solid 2px;
     color: black;
 }
-.contenidoo form input:hover{
+.contenidoo form .CerrarSesion:hover{
     background: #0066FF;
     color: white;
     transition: .3s ease-in-out

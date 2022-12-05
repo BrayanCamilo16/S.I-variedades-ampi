@@ -55,11 +55,11 @@
                                 <h2>${usuarioVo.emailUsuario}</h2>
                                 <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                     <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                    <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#perfil" class="CerrarSesion">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                     <input type="hidden" name="action" value="4">
                                 </form>
                                 <form method="post" action="${pageContext.request.contextPath}/Sesiones">
-                                    <input type="submit" value="Cerrar sesi&#243;n">
+                                    <input type="submit" value="Cerrar sesi&#243;n" class="CerrarSesion">
                                 </form>
                             </div>
                         </div>
@@ -74,9 +74,6 @@
         <!--            ESTE ES INICIO DEL NAVBAR DEL VENDEDOR-->
         <ul class="lista-todooo">
             <% } else if (idRol.equals("2")) {%>
-            <li class="listass-enlacess">
-                <a aria-current="page" href="" class="enlacesss">Mis pedidos<i class="fas fa-solid fa-cart-arrow-down"></i></a>
-            </li>
             <li class="listass-enlacess">
                 <a aria-current="page" href="${pageContext.request.contextPath}/vendedor/categorias.jsp" class="enlacesss">Categorias<i class="fas fa-solid fa-cookie"></i></a>
             </li>
@@ -107,11 +104,11 @@
                                 <h2>${usuarioVo.emailUsuario}</h2>
                                 <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                     <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                    <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#perfil" class="CerrarSesion">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                     <input type="hidden" name="action" value="4">
                                 </form>
                                 <form method="post" action="${pageContext.request.contextPath}/Sesiones">
-                                    <input type="submit" data-bs-toggle="modal" data-bs-target="#login" value="Cerrar sesi&#243;n">
+                                    <input type="submit" value="Cerrar sesi&#243;n" class="CerrarSesion">
                                 </form>
                             </div>
                         </div>
@@ -149,11 +146,11 @@
                                 <h2>${usuarioVo.emailUsuario}</h2>
                                 <form action="${pageContext.request.contextPath}/Usuario" method="POST">
                                     <input type="hidden" name="codigo" value="${usuarioVo.idUsuario}">
-                                    <button type="submit" class="btn-transparent bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#perfil">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#perfil" class="CerrarSesion">Actualizar Mi Perfil<i class="fa-solid fa-pen-to-square"></i></button>
                                     <input type="hidden" name="action" value="4">
                                 </form>
                                 <form method="post" action="${pageContext.request.contextPath}/Sesiones">
-                                    <input type="submit" data-bs-toggle="modal" data-bs-target="#login" value="Cerrar sesi&#243;n">
+                                    <input type="submit" value="Cerrar sesi&#243;n" class="CerrarSesion">
                                 </form>
                             </div>
                         </div>

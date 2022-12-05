@@ -30,21 +30,18 @@
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="96f71b82-8ead-4fa5-bc17-40469b756b25"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FFFFFF" uuid="96f71b82-8ead-4fa5-bc17-40469b756b25"/>
 				<staticText>
-					<reportElement x="20" y="20" width="299" height="43" forecolor="#FFFFFF" uuid="631e9233-9143-43f1-bf17-a8cfda1756b7"/>
-					<textElement>
-						<font size="34" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Variedades ampi]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="55db094a-4680-49ce-a9d6-135eb0a03779"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#000000" uuid="55db094a-4680-49ce-a9d6-135eb0a03779"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[factura de compra ]]></text>
 				</staticText>
+				<image>
+					<reportElement x="55" y="7" width="288" height="85" uuid="f3c3fce2-419d-4e79-860c-b962e33274d6"/>
+					<imageExpression><![CDATA["C:\\S.I-variedades-ampi\\src\\main\\webapp\\img\\variedades-ampi.png"]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>
@@ -61,28 +58,28 @@
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[fecha_pedido]]></text>
+				<text><![CDATA[Fecha Pedido]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a93a9784-0b88-4638-b41b-ea1e8793de52"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[nombre_producto]]></text>
+				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b21033c6-011b-41d1-8c8c-6d0fb527a5ed"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[precio_unidad]]></text>
+				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="325c1b6d-2ad6-46fa-888b-9a0fe8cd5761"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[cantidad]]></text>
+				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
